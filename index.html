@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&text=%26&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=11">
+  <link rel="stylesheet" href="css/styles.css?v=15">
 </head>
 <body>
 
@@ -89,6 +89,34 @@
             </linearGradient>
           </defs>
 
+          <!-- fairy lights, a nod to the Save the Date -->
+          <g class="lights" fill="none" stroke="#b8975a" stroke-width="1" opacity=".9">
+            <path d="M-20 40 C180 150 420 140 600 60 C780 -20 1000 -10 1180 70 C1340 140 1500 130 1620 40" opacity=".55"/>
+            <path d="M-20 150 C200 250 420 240 620 170 C820 100 1020 110 1200 190 C1360 260 1500 250 1620 160" opacity=".45"/>
+          </g>
+          <g class="bulbs" fill="#fff3d6">
+            <g class="bulb"><circle cx="80" cy="92" r="9" opacity=".45"/><circle cx="80" cy="92" r="4"/></g>
+            <g class="bulb"><circle cx="190" cy="138" r="9" opacity=".45"/><circle cx="190" cy="138" r="4"/></g>
+            <g class="bulb"><circle cx="330" cy="146" r="9" opacity=".45"/><circle cx="330" cy="146" r="4"/></g>
+            <g class="bulb"><circle cx="470" cy="118" r="9" opacity=".45"/><circle cx="470" cy="118" r="4"/></g>
+            <g class="bulb"><circle cx="600" cy="62" r="9" opacity=".45"/><circle cx="600" cy="62" r="4"/></g>
+            <g class="bulb"><circle cx="740" cy="26" r="9" opacity=".45"/><circle cx="740" cy="26" r="4"/></g>
+            <g class="bulb"><circle cx="890" cy="14" r="9" opacity=".45"/><circle cx="890" cy="14" r="4"/></g>
+            <g class="bulb"><circle cx="1040" cy="30" r="9" opacity=".45"/><circle cx="1040" cy="30" r="4"/></g>
+            <g class="bulb"><circle cx="1180" cy="72" r="9" opacity=".45"/><circle cx="1180" cy="72" r="4"/></g>
+            <g class="bulb"><circle cx="1320" cy="128" r="9" opacity=".45"/><circle cx="1320" cy="128" r="4"/></g>
+            <g class="bulb"><circle cx="1460" cy="132" r="9" opacity=".45"/><circle cx="1460" cy="132" r="4"/></g>
+            <g class="bulb"><circle cx="1580" cy="76" r="9" opacity=".45"/><circle cx="1580" cy="76" r="4"/></g>
+            <g class="bulb"><circle cx="120" cy="212" r="8" opacity=".4"/><circle cx="120" cy="212" r="3.5"/></g>
+            <g class="bulb"><circle cx="300" cy="246" r="8" opacity=".4"/><circle cx="300" cy="246" r="3.5"/></g>
+            <g class="bulb"><circle cx="520" cy="212" r="8" opacity=".4"/><circle cx="520" cy="212" r="3.5"/></g>
+            <g class="bulb"><circle cx="720" cy="140" r="8" opacity=".4"/><circle cx="720" cy="140" r="3.5"/></g>
+            <g class="bulb"><circle cx="920" cy="112" r="8" opacity=".4"/><circle cx="920" cy="112" r="3.5"/></g>
+            <g class="bulb"><circle cx="1120" cy="152" r="8" opacity=".4"/><circle cx="1120" cy="152" r="3.5"/></g>
+            <g class="bulb"><circle cx="1300" cy="232" r="8" opacity=".4"/><circle cx="1300" cy="232" r="3.5"/></g>
+            <g class="bulb"><circle cx="1500" cy="236" r="8" opacity=".4"/><circle cx="1500" cy="236" r="3.5"/></g>
+          </g>
+
           <!-- clouds: a few soft washes in the sky -->
           <g filter="url(#soft)" opacity=".7">
             <ellipse cx="380" cy="430" rx="260" ry="34" fill="#fff"/>
@@ -136,7 +164,7 @@
           </g>
 
           <!-- botanical line art: left -->
-          <g fill="none" stroke="#a08d69" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".75">
+          <g fill="none" stroke="#b8975a" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".8">
             <path d="M-10 980 C60 900 90 820 120 700 C128 670 150 640 180 620"/>
             <path d="M40 905 c-30-24-70-22-96-6 M48 905 c-4-36 12-66 44-78 M72 860 c-22-26-60-28-86-12 M80 858 c0-34 16-60 46-68 M100 800 c-20-22-52-26-76-14 M104 800 c2-30 20-52 46-58 M124 738 c-16-20-44-24-66-14 M128 738 c4-26 20-44 42-50 M150 670 c-10-16-32-20-52-12 M154 668 c6-22 20-34 38-38"/>
             <path d="M160 640 c6-8 14-14 24-16 M168 650 c0-10 4-18 12-24"/>
@@ -146,7 +174,7 @@
           </g>
 
           <!-- botanical line art: right (longer vine) -->
-          <g fill="none" stroke="#a08d69" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".7">
+          <g fill="none" stroke="#b8975a" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".75">
             <path d="M1610 120 C1540 220 1520 340 1540 470 C1552 560 1540 640 1500 700"/>
             <path d="M1572 180 c-34 2-58 24-66 52 M1566 190 c30-14 62-10 84 8 M1548 262 c-34 4-56 28-62 56 M1544 270 c28-12 60-6 80 14 M1536 348 c-34 8-54 32-58 60 M1534 356 c26-10 58-2 76 20 M1540 440 c-34 10-50 36-52 64 M1540 448 c24-8 54 2 70 24 M1540 530 c-32 12-46 40-46 68 M1542 538 c22-6 50 6 64 30 M1524 620 c-30 14-42 42-40 70"/>
             <g transform="translate(1592 300)"><circle r="2" fill="#a08d69" stroke="none"/><path d="M0-9 c4 0 6 4 4 7 M0-9 c-4 0-6 4-4 7 M8-2 c2 4-1 8-5 8 M-8-2 c-2 4 1 8 5 8 M0 9 c-3-1-4-4-3-7"/></g>
@@ -161,6 +189,9 @@
               <ellipse cx="1480" cy="910" rx="13" ry="8" transform="rotate(10 1480 910)"/>
               <ellipse cx="1550" cy="860" rx="12" ry="7" transform="rotate(-50 1550 860)"/>
               <ellipse cx="1455" cy="945" rx="11" ry="7" transform="rotate(35 1455 945)"/>
+            </g>
+            <g fill="#e0a84a" opacity=".75">
+              <circle cx="1512" cy="938" r="7"/><circle cx="1470" cy="876" r="5.5"/><circle cx="1562" cy="906" r="5"/>
             </g>
             <g fill="#8c9a7b" opacity=".8">
               <path d="M1440 1000 c20-40 44-70 70-92 c-10 36-28 68-70 92z"/>
@@ -192,7 +223,7 @@
       <div class="wrap story__grid">
         <div class="story__text">
           <div class="section__head reveal">
-            <p class="caps">A little bit about us</p>
+            <p class="caps caps--orn">A little bit about us</p>
             <h2 class="section__title">The start of something, and <em>a very good party.</em></h2>
           </div>
           <div class="prose reveal">
@@ -202,6 +233,14 @@
         </div>
 
         <div class="story__art reveal" aria-hidden="true">
+          <!-- cusped jharokha arch, hairline gold -->
+          <svg class="motif motif--arch" viewBox="0 0 400 600" preserveAspectRatio="xMidYMax meet" fill="none" stroke="#9a7a3f" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M40 600 V260 A40 40 0 0 1 80 200 A40 40 0 0 1 125 150 A40 40 0 0 1 165 105 A40 40 0 0 1 200 60 A40 40 0 0 1 235 105 A40 40 0 0 1 275 150 A40 40 0 0 1 320 200 A40 40 0 0 1 360 260 V600"/>
+            <path d="M58 600 V268 A34 34 0 0 1 94 214 A34 34 0 0 1 136 168 A34 34 0 0 1 172 126 A34 34 0 0 1 200 88 A34 34 0 0 1 228 126 A34 34 0 0 1 264 168 A34 34 0 0 1 306 214 A34 34 0 0 1 342 268 V600" opacity=".7"/>
+            <path d="M24 262 h32 M344 262 h32 M24 276 h32 M344 276 h32"/>
+            <path d="M200 60 V34 M192 44 c4-8 12-8 16 0 M188 30 c6-10 18-10 24 0"/>
+            <circle cx="200" cy="24" r="2" fill="#9a7a3f" stroke="none"/>
+          </svg>
           <!-- pressed-botanical composition: a soft wash with a line-drawn sprig and small blue blooms -->
           <svg viewBox="0 0 520 560" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -258,8 +297,13 @@
     <section class="section celebrations" id="celebrations">
       <div class="wrap">
         <div class="section__head reveal">
-          <p class="caps">The celebrations</p>
+          <p class="caps caps--orn">The celebrations</p>
           <h2 class="section__title">Three days in Ajabgarh</h2>
+          <svg class="beads" viewBox="0 0 260 18" aria-hidden="true" fill="none" stroke="#b8975a" stroke-width=".9">
+            <path d="M0 4 C60 18 200 18 260 4" opacity=".7"/>
+            <g fill="#e0a84a" stroke="none"><circle cx="26" cy="8.6" r="2.4"/><circle cx="52" cy="11.2" r="2.4"/><circle cx="78" cy="12.8" r="2.4"/><circle cx="104" cy="13.7" r="2.4"/><circle cx="130" cy="14" r="2.4"/><circle cx="156" cy="13.7" r="2.4"/><circle cx="182" cy="12.8" r="2.4"/><circle cx="208" cy="11.2" r="2.4"/><circle cx="234" cy="8.6" r="2.4"/></g>
+            <g fill="#8c9a7b" stroke="none" opacity=".8"><circle cx="39" cy="10" r="1.3"/><circle cx="65" cy="12.1" r="1.3"/><circle cx="91" cy="13.3" r="1.3"/><circle cx="117" cy="13.9" r="1.3"/><circle cx="143" cy="13.9" r="1.3"/><circle cx="169" cy="13.3" r="1.3"/><circle cx="195" cy="12.1" r="1.3"/><circle cx="221" cy="10" r="1.3"/></g>
+          </svg>
         </div>
 
         <!-- 26 January -->
@@ -415,9 +459,18 @@
     <!-- What to wear                                                  -->
     <!-- ============================================================ -->
     <section class="section wear" id="wear">
+      <svg class="motif motif--buta" viewBox="0 0 300 420" aria-hidden="true" fill="none" stroke="#9a7a3f" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M150 400 C40 360 20 240 70 150 C110 80 180 50 230 30 C250 22 262 40 250 60 C230 95 280 160 270 240 C260 330 220 390 150 400 Z"/>
+        <path d="M150 372 C70 340 56 240 96 170 C126 118 180 94 222 76 C214 108 250 170 244 240 C238 318 206 362 150 372 Z" opacity=".8"/>
+        <path d="M150 340 C100 316 92 244 120 196 C140 164 176 148 204 136 C198 160 222 206 218 252 C214 306 190 334 150 340 Z" opacity=".6"/>
+        <path d="M150 300 c-10-30 2-66 28-86 M160 300 c6-30 26-56 56-66"/>
+        <g fill="#9a7a3f" stroke="none"><circle cx="150" cy="300" r="2.2"/><circle cx="176" cy="216" r="1.8"/><circle cx="214" cy="236" r="1.8"/><circle cx="184" cy="150" r="1.8"/></g>
+        <path d="M84 150 c10 6 14 18 10 30 M96 128 c10 6 14 18 10 30 M112 108 c10 6 14 18 10 30 M132 92 c10 6 14 18 10 30 M156 80 c10 6 14 18 10 30 M182 70 c10 6 14 18 10 30 M208 60 c10 6 14 18 10 30" opacity=".7"/>
+        <path d="M60 220 c-10 8-10 22 0 30 M58 260 c-10 8-10 22 0 30 M64 300 c-10 8-10 22 0 30 M80 338 c-10 8-10 22 0 30" opacity=".7"/>
+      </svg>
       <div class="wrap">
         <div class="section__head reveal">
-          <p class="caps">What to wear</p>
+          <p class="caps caps--orn">What to wear</p>
           <h2 class="section__title">Dress for the colours of the days</h2>
           <p class="lede">These are suggestions, not rules. Wear what makes you feel wonderful.</p>
         </div>
@@ -433,7 +486,7 @@
             <h3>Haldi &amp; Mehendi</h3>
             <p>Light and easy ethnic wear in pastels and florals. Turmeric does not come out, so nothing precious.</p>
             <ul class="swatches" aria-label="Suggested colours: butter yellow, pistachio, mint, blush">
-              <li style="background:#f1e3b9"></li><li style="background:#c3cbb0"></li><li style="background:#d6e6dc"></li><li style="background:#f1d9cf"></li>
+              <li style="background:#f1e3b9"></li><li style="background:#e0a84a"></li><li style="background:#c3cbb0"></li><li style="background:#f1d9cf"></li>
             </ul>
           </div>
           <div class="wear__item">
@@ -462,7 +515,7 @@
       <div class="wrap venue__grid">
         <div>
           <div class="section__head reveal">
-            <p class="caps">The venue</p>
+            <p class="caps caps--orn">The venue</p>
             <h2 class="venue__name">Ananta Spa &amp; Resort<small>Ajabgarh, Rajasthan</small></h2>
           </div>
           <div class="prose">
@@ -511,10 +564,18 @@
     <!-- RSVP + a note for the couple                                  -->
     <!-- ============================================================ -->
     <section class="section rsvp" id="rsvp">
+      <svg class="motif motif--lotus" viewBox="0 0 320 200" aria-hidden="true" fill="none" stroke="#9a7a3f" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M160 24 C128 74 128 134 160 178 C192 134 192 74 160 24 Z"/>
+        <path d="M160 178 C112 160 76 118 70 64 C112 76 146 118 160 178 Z M160 178 C208 160 244 118 250 64 C208 76 174 118 160 178 Z"/>
+        <path d="M160 178 C104 180 56 150 30 104 C80 100 126 128 160 178 Z M160 178 C216 180 264 150 290 104 C240 100 194 128 160 178 Z" opacity=".8"/>
+        <path d="M160 178 C118 190 74 182 44 162 M160 178 C202 190 246 182 276 162" opacity=".6"/>
+        <path d="M160 60 V150 M136 100 c8 14 16 30 24 50 M184 100 c-8 14-16 30-24 50" opacity=".55"/>
+        <path d="M110 190 h100" opacity=".5"/>
+      </svg>
       <div class="wrap rsvp__grid">
         <div class="rsvp__intro">
           <div class="section__head reveal">
-            <p class="caps">RSVP</p>
+            <p class="caps caps--orn">RSVP</p>
             <h2 class="section__title">Will you join us?</h2>
           </div>
           <p>A name and a number is all we need. The rest, we'll take care of.</p>
