@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&text=%26&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link rel="stylesheet" href="css/styles.css?v=11">
 </head>
 <body>
 
@@ -47,7 +47,7 @@
           <defs>
             <!-- painted, slightly ragged edges -->
             <filter id="wc" x="-5%" y="-20%" width="110%" height="140%">
-              <feTurbulence type="fractalNoise" baseFrequency=".012 .03" numOctaves="3" seed="7" result="n"/>
+              <feTurbulence type="fractalNoise" baseFrequency=".012 .03" numOctaves="2" seed="7" result="n"/>
               <feDisplacementMap in="SourceGraphic" in2="n" scale="18" xChannelSelector="R" yChannelSelector="G"/>
               <feGaussianBlur stdDeviation=".6"/>
             </filter>
@@ -101,19 +101,19 @@
           <!-- landscape, nudged down so the names have room -->
           <g transform="translate(0 55)">
           <!-- hills -->
-          <g class="drift drift--3" filter="url(#wc)" opacity=".85">
+          <g class="drift drift--3"><g filter="url(#wc)" opacity=".85">
             <path fill="url(#farHill)" d="M-40 735 C120 700 220 672 330 668 C420 664 470 690 560 686 C650 682 700 640 790 626 C880 612 920 660 1010 662 C1100 664 1140 630 1230 626 C1320 622 1380 668 1460 676 C1540 684 1600 672 1660 680 L1660 760 L-40 760 Z"/>
-          </g>
-          <g class="drift drift--2" filter="url(#wc)">
+          </g></g>
+          <g class="drift drift--2"><g filter="url(#wc)">
             <path fill="url(#midHill)" d="M-40 745 C80 735 160 712 260 705 C360 698 400 724 500 718 C590 713 640 672 720 660 C800 648 836 650 900 650 C980 650 1010 694 1090 696 C1170 698 1220 666 1290 672 C1370 678 1420 714 1500 716 C1570 718 1620 708 1660 712 L1660 770 L-40 770 Z"/>
             <!-- sunlit crest -->
             <path fill="url(#peak)" d="M640 700 C690 676 740 656 810 652 C870 648 900 650 920 654 C900 666 880 684 866 702 Z" opacity=".8"/>
-          </g>
-          <g class="drift" filter="url(#wc)">
+          </g></g>
+          <g class="drift"><g filter="url(#wc)">
             <path fill="url(#nearHill)" d="M-40 752 C60 748 120 738 220 740 C320 742 360 752 430 750 C520 748 560 728 640 724 C700 721 740 736 800 736 C860 736 890 724 950 722 C1030 720 1080 742 1150 742 C1220 742 1270 728 1340 730 C1420 732 1480 748 1560 748 C1600 748 1640 746 1660 748 L1660 775 L-40 775 Z"/>
             <!-- treeline: small irregular bumps -->
             <path fill="#8d9a85" opacity=".9" d="M300 751 c6-14 12-14 18 0 c4-9 10-9 14 0 c5-12 12-12 17 0 Z M560 735 c5-16 11-16 16 0 c4-10 10-10 14 0 c4-12 9-12 13 0 Z M690 740 c5-13 11-13 16 0 c3-8 8-8 11 0 Z M900 729 c5-15 11-15 16 0 c4-9 9-9 13 0 c5-12 11-12 16 0 Z M1010 745 c5-12 11-12 16 0 c4-8 9-8 13 0 Z M1180 742 c6-14 12-14 18 0 c3-9 9-9 12 0 Z M1390 740 c5-12 11-12 16 0 c3-8 8-8 11 0 c4-11 10-11 14 0 Z"/>
-          </g>
+          </g></g>
 
           <!-- valley floor: scrub, fields and morning mist instead of water -->
           <rect x="0" y="754" width="1600" height="300" fill="url(#ground)"/>
