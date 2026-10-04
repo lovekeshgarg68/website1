@@ -271,8 +271,10 @@ p:last-child { margin-bottom: 0; }
 .hero__scroll {
   position: absolute;
   bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  width: max-content;
+  margin-inline: auto;
   display: grid;
   justify-items: center;
   gap: .6rem;
