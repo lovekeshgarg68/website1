@@ -6,10 +6,21 @@ Static site, no build step. Open `index.html` in a browser or host the folder an
 index.html          the whole site
 css/styles.css      design tokens and styles
 js/config.js        the only file to edit before launch
-js/main.js          navigation, timeline, forms, guestbook
+js/main.js          invitation opening, navigation, timeline, forms, guestbook
 apps-script/Code.gs Google Sheets backend for RSVP + notes
-media/              Save the Date (reference only; not used on the site)
+media/              monogram mask, favicons, the three painted panels (SVG), reference images
 ```
+
+## The logo on the site
+
+`media/logo_monogram.jpg` is the original. The site uses only the monogram from it (the wreath is not used on the page):
+
+- `monogram-mask.png` — the "AL" monogram as a single-colour mask; CSS tints it for the wax seal, the nav mark and the crest on the invitation card.
+- `favicon.png`, `apple-touch-icon.png` — the monogram on an ivory disc.
+
+Type: Cormorant Garamond (headings), EB Garamond (text), Marcellus (letterspaced small caps), Pinyon Script (ampersand and two short lines).
+
+The envelope opening plays on every fresh visit to the home page. It is skipped automatically for deep links (`#rsvp`) and for visitors with reduced-motion turned on, and anyone can tap the seal, press Enter, or hit Skip.
 
 ## Before launch
 
@@ -24,6 +35,7 @@ media/              Save the Date (reference only; not used on the site)
 3. **Cocktail (26 Jan):** shown as "By invitation" with no RSVP option. Confirm those ~60 guests directly; they can still use the form for the 27th and 28th.
 4. **Fill in when known:** Sehra Bandi venue, transfer arrangements. Search `to follow` in `index.html`.
 5. Optional: add an RSVP deadline line in the RSVP intro.
+6. **Cache busting:** after editing `js/config.js` (or `main.js` / `styles.css`), bump the `?v=` number on its `<script>`/`<link>` tag in `index.html`. Otherwise returning visitors keep the cached demo-mode config and their RSVPs are never saved.
 
 ## Local preview
 
