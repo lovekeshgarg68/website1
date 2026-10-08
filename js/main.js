@@ -5,6 +5,107 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const html = document.documentElement;
+
+  /* ---------------------------------------------------------------
+     The invitation: seal breaks, flap opens, card rises, scene appears
+  --------------------------------------------------------------- */
+  const invite = $("#invite");
+  const behind = $$("header, main, footer");
+  const revealHero = () => {
+    html.classList.add("is-revealed");
+    html.classList.remove("invite-lock");
+    behind.forEach((el) => el.removeAttribute("inert"));
+    if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
+  if (invite && html.classList.contains("has-invite")) {
+    html.classList.add("invite-lock");
+    behind.forEach((el) => el.setAttribute("inert", ""));
+    invite.focus({ preventScroll: true });
+    const env = $("#env");
+    let opened = false;
+    let timers = [];
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    const finish = () => {
+      invite.classList.add("is-done");
+      revealHero();
+      later(() => invite.remove(), 1100);
+    };
+    const open = () => {
+      if (opened) return;
+      opened = true;
+      invite.classList.add("is-opening");
+      env.classList.add("is-open");       // seal breaks, flap lifts, card rises
+      later(() => env.classList.add("is-zoom"), 2000); // the card comes towards you
+      later(finish, 2450);                // and the valley appears behind it
+    };
+    const skip = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      opened = true;
+      invite.classList.add("is-done");
+      revealHero();
+      setTimeout(() => invite.remove(), 1000);
+    };
+    $("#seal")?.addEventListener("click", (e) => { e.stopPropagation(); open(); });
+    $("#inviteSkip")?.addEventListener("click", (e) => { e.stopPropagation(); skip(); });
+    invite.addEventListener("click", () => { if (!opened) open(); });
+    document.addEventListener("keydown", (e) => {
+      if (!invite.isConnected) return;
+      if (e.key === "Escape") { skip(); return; }
+      // Focused controls (seal, Skip) activate natively through their click handlers.
+      if (e.target instanceof Element && e.target.closest("button, a, input, select, textarea")) return;
+      if ((e.key === "Enter" || e.key === " ") && !opened) { e.preventDefault(); open(); }
+    });
+    later(open, 3800); // open by itself if nobody taps
+  } else {
+    revealHero();
+  }
+
+  /* ---------------------------------------------------------------
+     Hero parallax (desktop only): the valley drifts slower than the page
+  --------------------------------------------------------------- */
+  const heroArt = $(".hero__art");
+  const fine = window.matchMedia("(min-width: 761px) and (pointer: fine)").matches;
+  if (heroArt && fine && !reduceMotion) {
+    let raf = false;
+    const move = () => {
+      raf = false;
+      const y = window.scrollY;
+      if (y > window.innerHeight * 1.2) return;
+      heroArt.style.transform = `translate3d(0, ${(y * 0.16).toFixed(1)}px, 0)`;
+    };
+    window.addEventListener("scroll", () => { if (!raf) { raf = true; requestAnimationFrame(move); } }, { passive: true });
+  }
+
+  /* ---------------------------------------------------------------
+     Counting down to the 26th
+  --------------------------------------------------------------- */
+  const countdown = $("#countdown");
+  const daysToGo = (() => {
+    const target = new Date("2027-01-26T00:00:00+05:30");
+    return Math.ceil((target - Date.now()) / 864e5);
+  })();
+  function countdownText(n) {
+    if (n > 1) return `${n} days to go`;
+    if (n === 1) return "Tomorrow";
+    if (n >= -2) return "It’s happening";
+    return "26–28 January 2027";
+  }
+  if (countdown) countdown.textContent = countdownText(daysToGo);
+  function tickCountdown() {
+    if (!countdown || daysToGo <= 1 || reduceMotion) return;
+    const start = performance.now();
+    const dur = 1400;
+    const step = (t) => {
+      const p = Math.min(1, (t - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      countdown.textContent = `${Math.round(daysToGo * eased)} days to go`;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
 
   /* ---------------------------------------------------------------
      Navigation: appears once the hero scrolls away
@@ -15,23 +116,28 @@
 
   if ("IntersectionObserver" in window && hero) {
     new IntersectionObserver(
-      ([entry]) => nav.classList.toggle("is-visible", entry.intersectionRatio < 0.35),
+      ([entry]) => {
+        nav.classList.toggle("is-visible", entry.intersectionRatio < 0.35);
+        hero.classList.toggle("is-away", !entry.isIntersecting);
+      },
       { threshold: [0, 0.35, 1] }
     ).observe(hero);
   } else {
     nav.classList.add("is-visible");
   }
 
-  navToggle?.addEventListener("click", () => {
-    const open = nav.classList.toggle("menu-open");
-    navToggle.setAttribute("aria-expanded", String(open));
+  const menuIsOpen = () => nav.classList.contains("menu-open");
+  const setMenu = (open) => { nav.classList.toggle("menu-open", open); navToggle?.setAttribute("aria-expanded", String(open)); };
+  let menuScrollY = 0;
+  navToggle?.addEventListener("click", () => { setMenu(!menuIsOpen()); menuScrollY = window.scrollY; });
+  $$("#navLinks a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("click", (e) => { if (menuIsOpen() && !nav.contains(e.target)) setMenu(false); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape" || !menuIsOpen()) return;
+    setMenu(false);
+    if (nav.contains(document.activeElement)) navToggle?.focus();
   });
-  $$("#navLinks a").forEach((a) =>
-    a.addEventListener("click", () => {
-      nav.classList.remove("menu-open");
-      navToggle?.setAttribute("aria-expanded", "false");
-    })
-  );
+  window.addEventListener("scroll", () => { if (menuIsOpen() && Math.abs(window.scrollY - menuScrollY) > 24) setMenu(false); }, { passive: true });
 
   /* ---------------------------------------------------------------
      Section-head reveals (deliberately only on heads and art)
@@ -45,6 +151,7 @@
         entries.forEach((e) => {
           if (e.isIntersecting) {
             e.target.classList.add("is-in");
+            if (e.target.contains(countdown)) tickCountdown();
             io.unobserve(e.target);
           }
         }),
@@ -54,7 +161,7 @@
   }
 
   /* ---------------------------------------------------------------
-     Days: <details> with an animated grid-row open/close
+     Days: an animated grid-row open/close
   --------------------------------------------------------------- */
   $$(".day").forEach((day) => {
     const summary = $(".day__summary", day);
@@ -90,23 +197,28 @@
     const focus = vh * 0.62; // the "now" line sits a little below centre
     const total = rect.height;
     const p = Math.min(1, Math.max(0, (focus - rect.top) / total));
-    tlLine.style.setProperty("--p", reduceMotion ? 1 : p.toFixed(4));
-    tlEvents.forEach((ev) => {
-      const r = ev.getBoundingClientRect();
-      ev.classList.toggle("is-past", reduceMotion || r.top + 28 < focus);
-    });
+    const past = tlEvents.map((ev) => reduceMotion || ev.getBoundingClientRect().top + 28 < focus); // read…
+    tlLine.style.setProperty("--p", reduceMotion ? 1 : p.toFixed(4));                              // …then write
+    tlEvents.forEach((ev, i) => ev.classList.toggle("is-past", past[i]));
+  }
+  // Only measure while the timeline is near the viewport
+  let tlNear = !("IntersectionObserver" in window);
+  if (timeline && !tlNear) {
+    new IntersectionObserver(([e]) => { tlNear = e.isIntersecting; if (tlNear) updateTimeline(); }, { rootMargin: "25% 0px" }).observe(timeline);
   }
   let ticking = false;
   const onScroll = () => {
-    if (ticking) return;
+    if (ticking || !tlNear) return;
     ticking = true;
     requestAnimationFrame(() => {
       updateTimeline();
       ticking = false;
     });
   };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
+  if (timeline && !reduceMotion) {
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  }
   updateTimeline();
 
   /* ---------------------------------------------------------------
@@ -133,18 +245,25 @@
     if (!form) return;
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (button.getAttribute("aria-disabled") === "true") return;
       status.textContent = "";
       status.classList.remove("is-error");
       const data = Object.fromEntries(new FormData(form).entries());
-      if (data.website) return; // honeypot
+      if (data.ref_code) return; // honeypot
       const problem = validate(form, data);
       if (problem) {
         status.textContent = problem.message;
         status.classList.add("is-error");
-        problem.field?.focus();
+        const f = problem.field;
+        if (f) {
+          f.setAttribute("aria-invalid", "true");
+          f.setAttribute("aria-describedby", status.id);
+          f.addEventListener("input", () => { f.removeAttribute("aria-invalid"); f.removeAttribute("aria-describedby"); }, { once: true });
+          f.focus();
+        }
         return;
       }
-      button.disabled = true;
+      button.setAttribute("aria-disabled", "true");
       button.classList.add("is-busy");
       status.textContent = "Sending…";
       try {
@@ -157,10 +276,10 @@
         onSuccess?.(payload, result);
       } catch (err) {
         console.error(err);
-        status.textContent = "That didn't go through. Please try again, or message us directly.";
+        status.textContent = "That didn’t go through. Please try again in a moment.";
         status.classList.add("is-error");
       } finally {
-        button.disabled = false;
+        button.removeAttribute("aria-disabled");
         button.classList.remove("is-busy");
         if (!form.classList.contains("is-done")) status.textContent = status.textContent === "Sending…" ? "" : status.textContent;
       }
@@ -190,7 +309,7 @@
     },
     onSuccess(payload) {
       const first = payload.name.split(" ")[0];
-      $("#rsvpThanksText").textContent = `We've got your reply, ${first}, and can't wait to see you in Ajabgarh.`;
+      $("#rsvpThanksText").textContent = `We’ve got your reply, ${first}, and can’t wait to see you in Ajabgarh.`;
       // Show the note locally straight away; it appears for everyone once approved in the Sheet.
       if (payload.wishes) prependNote({ name: payload.name, message: payload.wishes });
     },
