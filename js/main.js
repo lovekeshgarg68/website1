@@ -19,10 +19,49 @@
     if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: "auto" });
   };
 
+  /* A little music with the envelope: the first bars of "Sunsetz", swelling as the flap lifts,
+     settling low as the valley appears, and fading away on its own. Web Audio does the fades
+     (iPhones ignore element volume); if it is unavailable the clip simply plays with its own fades. */
+  const audio = $("#inviteAudio");
+  let actx = null, gain = null;
+  const music = {
+    ramp(v, s) {
+      if (gain && actx) {
+        const t = actx.currentTime;
+        gain.gain.cancelScheduledValues(t);
+        gain.gain.setValueAtTime(gain.gain.value, t);
+        gain.gain.linearRampToValueAtTime(v, t + s);
+      } else if (audio) {
+        try { audio.volume = v; } catch (e) { /* iOS */ }
+      }
+    },
+    start() {
+      if (!audio) return;
+      try {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (AC && !actx) {
+          actx = new AC();
+          gain = actx.createGain();
+          gain.gain.value = 0;
+          actx.createMediaElementSource(audio).connect(gain).connect(actx.destination);
+        }
+        if (actx && actx.state === "suspended") actx.resume();
+      } catch (e) { actx = null; gain = null; }
+      try { audio.currentTime = 0; } catch (e) { /* not loaded yet */ }
+      const p = audio.play();
+      if (p && p.catch) p.catch(() => {});   // without a tap the browser may refuse; the envelope opens silently
+      this.ramp(0.7, 1.8);                   // swells as the seal gives and the flap lifts
+    },
+    settle() { this.ramp(0.32, 3); },        // eases down as the valley appears, then the clip's own fade ends it
+    stop(s = 0.6) { if (!audio) return; this.ramp(0, s); setTimeout(() => audio.pause(), s * 1000 + 60); }
+  };
+
   if (invite && html.classList.contains("has-invite")) {
     html.classList.add("invite-lock");
     behind.forEach((el) => el.setAttribute("inert", ""));
     invite.focus({ preventScroll: true });
+    if (audio) { audio.src = "media/music/sunsetz-intro.mp3"; audio.preload = "auto"; audio.load(); }
+    document.addEventListener("visibilitychange", () => { if (document.hidden) music.stop(0.3); });
     const env = $("#env");
     let opened = false;
     let timers = [];
@@ -30,11 +69,13 @@
     const finish = () => {
       invite.classList.add("is-done");
       revealHero();
+      music.settle();
       later(() => invite.remove(), 1100);
     };
     const open = () => {
       if (opened) return;
       opened = true;
+      music.start();
       invite.classList.add("is-opening");
       env.classList.add("is-open");                      // the seal gives, the flap lifts, the inside shows
       later(() => env.classList.add("is-out"), 950);     // the envelope slips away, the card lifts
@@ -45,6 +86,7 @@
       timers.forEach(clearTimeout);
       timers = [];
       opened = true;
+      music.stop();
       invite.classList.add("is-done");
       revealHero();
       setTimeout(() => invite.remove(), 1000);
