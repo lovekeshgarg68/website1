@@ -23,6 +23,7 @@
      settling low as the valley appears, and fading away on its own. Web Audio does the fades
      (iPhones ignore element volume); if it is unavailable the clip simply plays with its own fades. */
   const audio = $("#inviteAudio");
+  const chip = $("#musicChip");
   let actx = null, gain = null;
   const music = {
     ramp(v, s) {
@@ -35,8 +36,10 @@
         try { audio.volume = v; } catch (e) { /* iOS */ }
       }
     },
+    started: false,
     start() {
       if (!audio) return;
+      this.started = true;
       try {
         const AC = window.AudioContext || window.webkitAudioContext;
         const tapped = !navigator.userActivation || navigator.userActivation.isActive;
@@ -52,7 +55,11 @@
       } catch (e) { actx = null; gain = null; }
       try { audio.currentTime = 0; } catch (e) { /* not loaded yet */ }
       const p = audio.play();
-      if (p && p.catch) p.catch(() => {});   // without a tap the browser may refuse; the envelope opens silently
+      if (p && p.catch) p.catch(() => {      // no tap yet, so the browser refuses: offer a ♪ button after the reveal
+        this.started = false;
+        if (chip) { chip.hidden = false; }
+      });
+      if (chip) chip.hidden = true;
       this.ramp(0.7, 1.8);                   // swells as the seal gives and the flap lifts
     },
     settle() { this.ramp(0.32, 3); },        // eases down as the valley appears, then the clip's own fade ends it
@@ -65,6 +72,20 @@
     invite.focus({ preventScroll: true });
     if (audio) { audio.src = "media/music/sunsetz-intro.mp3"; audio.preload = "auto"; audio.load(); }
     document.addEventListener("visibilitychange", () => { if (document.hidden) music.stop(0.3); });
+    // The first touch anywhere unlocks sound (a silent play/pause), so an envelope that opens by itself can still sing.
+    const unlock = () => {
+      ["pointerdown", "touchstart", "keydown"].forEach((t) => document.removeEventListener(t, unlock, true));
+      if (!audio || music.started) return;
+      audio.muted = true;
+      const p = audio.play();
+      if (p && p.then) p.then(() => {
+        if (!music.started) { audio.pause(); try { audio.currentTime = 0; } catch (e) { /* fine */ } }
+        audio.muted = false;
+      }).catch(() => { audio.muted = false; });
+    };
+    ["pointerdown", "touchstart", "keydown"].forEach((t) => document.addEventListener(t, unlock, true));
+    chip?.addEventListener("click", () => { music.start(); music.settle(); });
+    audio?.addEventListener("ended", () => { if (chip) chip.hidden = true; });
     const env = $("#env");
     let opened = false;
     let timers = [];
