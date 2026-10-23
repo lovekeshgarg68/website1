@@ -8,7 +8,7 @@
   const html = document.documentElement;
 
   /* ---------------------------------------------------------------
-     The invitation: seal breaks, flap opens, card rises, scene appears
+     The invitation: seal gives, flap opens, envelope slips away, scene appears
   --------------------------------------------------------------- */
   const invite = $("#invite");
   const behind = $$("header, main, footer");
@@ -36,9 +36,10 @@
       if (opened) return;
       opened = true;
       invite.classList.add("is-opening");
-      env.classList.add("is-open");       // seal breaks, flap lifts, card rises
-      later(() => env.classList.add("is-zoom"), 2000); // the card comes towards you
-      later(finish, 2450);                // and the valley appears behind it
+      env.classList.add("is-open");                      // the seal gives, the flap lifts, the inside shows
+      later(() => env.classList.add("is-out"), 950);     // the envelope slips away, the card lifts
+      later(() => env.classList.add("is-zoom"), 4300);   // after a proper look at it, the card comes towards you
+      later(finish, 4650);                               // and the valley appears behind it
     };
     const skip = () => {
       timers.forEach(clearTimeout);
@@ -80,18 +81,18 @@
   }
 
   /* ---------------------------------------------------------------
-     Counting down to the 26th
+     Counting down to the 27th
   --------------------------------------------------------------- */
   const countdown = $("#countdown");
   const daysToGo = (() => {
-    const target = new Date("2027-01-26T00:00:00+05:30");
+    const target = new Date("2027-01-27T00:00:00+05:30");
     return Math.ceil((target - Date.now()) / 864e5);
   })();
   function countdownText(n) {
     if (n > 1) return `${n} days to go`;
     if (n === 1) return "Tomorrow";
     if (n >= -2) return "It’s happening";
-    return "26–28 January 2027";
+    return "27–28 January 2027";
   }
   if (countdown) countdown.textContent = countdownText(daysToGo);
   function tickCountdown() {
