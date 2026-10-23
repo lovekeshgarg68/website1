@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Marcellus&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="media/monogram-mask.png" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/styles.css?v=67">
+  <link rel="stylesheet" href="css/styles.css?v=68">
 </head>
 <body>
 
@@ -81,10 +81,11 @@
     </div>
     <button class="invite__skip" id="inviteSkip" type="button">Skip</button>
   </div>
+  <audio id="inviteAudio" src="media/music/sunsetz-intro.mp3" preload="auto" aria-hidden="true"></audio>
   <script>
     (function () {
       var h = document.documentElement, inv = document.getElementById("invite");
-      if (location.hash) { inv.remove(); h.classList.add("is-revealed"); }
+      if (location.hash) { inv.remove(); document.getElementById("inviteAudio").preload = "none"; h.classList.add("is-revealed"); }
       else { h.classList.add("has-invite"); }
     })();
   </script>
@@ -723,9 +724,7 @@
     <p class="foot__love">Made with love, for the people we love.</p>
   </footer>
 
-  <audio id="inviteAudio" preload="none" playsinline aria-hidden="true"></audio>
-  <button class="music-chip" id="musicChip" type="button" hidden><span aria-hidden="true">♪</span> Play our song</button>
   <script src="js/config.js?v=8"></script>
-  <script src="js/main.js?v=19"></script>
+  <script src="js/main.js?v=20"></script>
 </body>
 </html>
