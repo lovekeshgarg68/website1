@@ -53,7 +53,8 @@
         }
         if (actx && actx.state === "suspended") actx.resume();
       } catch (e) { actx = null; gain = null; }
-      try { audio.currentTime = 0; } catch (e) { /* not loaded yet */ }
+      try { audio.muted = false; } catch (e) { /* fine */ }
+      try { if (audio.currentTime > 0.05) audio.currentTime = 0; } catch (e) { /* not loaded yet */ }
       const p = audio.play();
       if (p && p.catch) p.catch(() => {      // no tap yet, so the browser refuses: offer a ♪ button after the reveal
         this.started = false;
@@ -73,17 +74,18 @@
     if (audio) { audio.src = "media/music/sunsetz-intro.mp3"; audio.preload = "auto"; audio.load(); }
     document.addEventListener("visibilitychange", () => { if (document.hidden) music.stop(0.3); });
     // The first touch anywhere unlocks sound (a silent play/pause), so an envelope that opens by itself can still sing.
+    // Never mute/unmute here: iPhones ignore an unmute that happens outside the tap. The clip starts from
+    // silence anyway, so starting it inside the gesture and pausing it a moment later is inaudible.
     const unlock = () => {
       ["pointerdown", "touchstart", "keydown"].forEach((t) => document.removeEventListener(t, unlock, true));
       if (!audio || music.started) return;
-      audio.muted = true;
+      try { audio.muted = false; } catch (e) { /* fine */ }
       const p = audio.play();
       if (p && p.then) p.then(() => {
         if (!music.started) { audio.pause(); try { audio.currentTime = 0; } catch (e) { /* fine */ } }
-        audio.muted = false;
-      }).catch(() => { audio.muted = false; });
+      }).catch(() => {});
     };
-    ["pointerdown", "touchstart", "keydown"].forEach((t) => document.addEventListener(t, unlock, true));
+    ["pointerdown", "touchstart", "keydown"].forEach((t) => document.addEventListener(t, unlock, { capture: true, passive: true }));
     chip?.addEventListener("click", () => { music.start(); music.settle(); });
     audio?.addEventListener("ended", () => { if (chip) chip.hidden = true; });
     const env = $("#env");
