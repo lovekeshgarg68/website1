@@ -8,7 +8,7 @@ css/styles.css      design tokens and styles
 js/config.js        the only file to edit before launch
 js/main.js          invitation opening, navigation, timeline, forms, guestbook
 apps-script/Code.gs Google Sheets backend for RSVP + notes
-media/              monogram mask, favicons, the three painted panels (SVG), reference images
+media/              monogram mask, favicons, images/us.jpeg (About us) and images/ananta-*.jpg (Venue; the 3 MB original is gitignored), reference images
 ```
 
 ## The logo on the site
@@ -20,7 +20,7 @@ media/              monogram mask, favicons, the three painted panels (SVG), ref
 
 Type: Cormorant Garamond (headings), EB Garamond (text), Marcellus (letterspaced small caps), Pinyon Script (ampersand and two short lines).
 
-The envelope fills the viewport inside a small margin, on a dark teal ground: handmade parchment (fibres, flecks, mottling) with a torn deckle edge and rounded corners (a nine-slice mask in `--deckle-box`; browsers without `mask-box-image` get plain rounded corners), four panels (left and right wings, base, flap) with gold-foil Mughal ornament, a Tiffany-blue liner inside, a wax seal, and a deckled handmade card. Sections are divided by a fine gold rule with a hanging lozenge (`.seam`); the band below the story holds only the countdown. Opening: the seal gives, the flap lifts, the envelope slips down off the card, the card lifts, then the valley appears behind it. The envelope opening plays on every fresh visit to the home page. It is skipped automatically for deep links (`#rsvp`) and for visitors with reduced-motion turned on, and anyone can tap the seal, press Enter, or hit Skip.
+The envelope fills the viewport inside a small margin, on a dark teal ground: handmade parchment (fibres, flecks, mottling) with a torn deckle edge (four edge-strip mask layers subtracted from a solid base, `--deckle-*`) and rounded corners (`clip-path`), four panels (left and right wings, base, flap) with gold-foil Mughal ornament, a Tiffany-blue liner inside, a wax seal, and a deckled handmade card. Sections are divided by a fine gold rule with a hanging lozenge (`.seam`); the band below the story holds only the countdown. Opening: the seal gives, the flap lifts, the envelope slips down off the card, the card lifts, then the valley appears behind it. The envelope opening plays on every fresh visit to the home page. It is skipped automatically for deep links (`#rsvp`) and for visitors with reduced-motion turned on, and anyone can tap the seal, press Enter, or hit Skip.
 
 ## Before launch
 

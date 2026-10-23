@@ -59,7 +59,7 @@
       if (e.target instanceof Element && e.target.closest("button, a, input, select, textarea")) return;
       if ((e.key === "Enter" || e.key === " ") && !opened) { e.preventDefault(); open(); }
     });
-    later(open, 3800); // open by itself if nobody taps
+    later(open, reduceMotion ? 8000 : 3800); // open by itself if nobody taps (longer when motion is reduced, since it opens without animation)
   } else {
     revealHero();
   }

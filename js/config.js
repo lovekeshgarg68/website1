@@ -9,10 +9,6 @@ window.WEDDING_CONFIG = {
 
   // Shown in the guestbook wall while SCRIPT_URL is empty, so the section
   // doesn't look bare during review. Remove or empty this array before launch.
-  SAMPLE_NOTES: [
-    { name: "Priya & Rohan", message: "Save us a spot on the dance floor at the sangeet. We have been practising." },
-    { name: "Meera Aunty", message: "Finally! Bless you both. Eat well, dance more, and send photographs." },
-    { name: "Arjun", message: "Counting the days until January. The loud table at the back is ours." },
-  ],
+  SAMPLE_NOTES: [],
 
 };

@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Marcellus&family=Pinyon+Script&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="media/monogram-mask.png">
-  <link rel="stylesheet" href="css/styles.css?v=57">
+  <link rel="preload" as="image" href="media/monogram-mask.png" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css?v=63">
 </head>
 <body>
 
@@ -84,8 +84,7 @@
   <script>
     (function () {
       var h = document.documentElement, inv = document.getElementById("invite");
-      var rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (location.hash || rm) { inv.remove(); h.classList.add("is-revealed"); }
+      if (location.hash) { inv.remove(); h.classList.add("is-revealed"); }
       else { h.classList.add("has-invite"); }
     })();
   </script>
@@ -170,11 +169,6 @@
             </linearGradient>
           </defs>
 
-          <!-- fairy lights, a nod to the Save the Date -->
-          <g class="lights" fill="none" stroke="#dcc389" stroke-width="1" opacity=".9">
-            <path d="M-20 40 C180 150 420 140 600 60 C780 -20 1000 -10 1180 70 C1340 140 1500 130 1620 40" opacity=".55"/>
-            <path d="M-20 150 C200 250 420 240 620 170 C820 100 1020 110 1200 190 C1360 260 1500 250 1620 160" opacity=".45"/>
-          </g>
 
 
           <!-- clouds: a few soft washes in the sky -->
@@ -278,28 +272,6 @@
           </g>
         </svg>
         <svg class="hero__life" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-          <g class="bulbs" fill="#fff1c4">
-            <g class="bulb"><circle cx="80" cy="92" r="10" opacity=".6"/><circle cx="80" cy="92" r="4"/></g>
-            <g class="bulb"><circle cx="190" cy="138" r="10" opacity=".6"/><circle cx="190" cy="138" r="4"/></g>
-            <g class="bulb"><circle cx="330" cy="146" r="10" opacity=".6"/><circle cx="330" cy="146" r="4"/></g>
-            <g class="bulb"><circle cx="470" cy="118" r="10" opacity=".6"/><circle cx="470" cy="118" r="4"/></g>
-            <g class="bulb"><circle cx="600" cy="62" r="10" opacity=".6"/><circle cx="600" cy="62" r="4"/></g>
-            <g class="bulb"><circle cx="740" cy="26" r="10" opacity=".6"/><circle cx="740" cy="26" r="4"/></g>
-            <g class="bulb"><circle cx="890" cy="14" r="10" opacity=".6"/><circle cx="890" cy="14" r="4"/></g>
-            <g class="bulb"><circle cx="1040" cy="30" r="10" opacity=".6"/><circle cx="1040" cy="30" r="4"/></g>
-            <g class="bulb"><circle cx="1180" cy="72" r="10" opacity=".6"/><circle cx="1180" cy="72" r="4"/></g>
-            <g class="bulb"><circle cx="1320" cy="128" r="10" opacity=".6"/><circle cx="1320" cy="128" r="4"/></g>
-            <g class="bulb"><circle cx="1460" cy="132" r="10" opacity=".6"/><circle cx="1460" cy="132" r="4"/></g>
-            <g class="bulb"><circle cx="1580" cy="76" r="10" opacity=".6"/><circle cx="1580" cy="76" r="4"/></g>
-            <g class="bulb"><circle cx="120" cy="212" r="9" opacity=".55"/><circle cx="120" cy="212" r="3.5"/></g>
-            <g class="bulb"><circle cx="300" cy="246" r="9" opacity=".55"/><circle cx="300" cy="246" r="3.5"/></g>
-            <g class="bulb"><circle cx="520" cy="212" r="9" opacity=".55"/><circle cx="520" cy="212" r="3.5"/></g>
-            <g class="bulb"><circle cx="720" cy="140" r="9" opacity=".55"/><circle cx="720" cy="140" r="3.5"/></g>
-            <g class="bulb"><circle cx="920" cy="112" r="9" opacity=".55"/><circle cx="920" cy="112" r="3.5"/></g>
-            <g class="bulb"><circle cx="1120" cy="152" r="9" opacity=".55"/><circle cx="1120" cy="152" r="3.5"/></g>
-            <g class="bulb"><circle cx="1300" cy="232" r="9" opacity=".55"/><circle cx="1300" cy="232" r="3.5"/></g>
-            <g class="bulb"><circle cx="1500" cy="236" r="9" opacity=".55"/><circle cx="1500" cy="236" r="3.5"/></g>
-          </g>
           <g class="bulbs stars" fill="#fff">
             <g class="bulb"><circle cx="980" cy="118" r="1.8" opacity=".8"/></g>
             <g class="bulb"><circle cx="1240" cy="300" r="1.5" opacity=".7"/></g>
@@ -367,8 +339,10 @@
           </div>
         </div>
 
-        <div class="story__art reveal" aria-hidden="true">
-<img class="panel" src="media/panel-story.svg?v=2" width="400" height="560" alt="" decoding="async" fetchpriority="low">
+        <div class="story__art reveal">
+          <figure class="photo">
+            <img class="photo__img" src="media/images/us.jpeg" width="885" height="1001" alt="Aakanksha and Lovekesh, laughing, in a shower of petals at dusk" loading="lazy" decoding="async">
+          </figure>
         </div>
       </div>
     </section>
@@ -517,7 +491,7 @@
           </div></div>
         </div>
 
-        <p class="days__after reveal"><span class="day__num day__num--sm">29</span> January · Checkout. A slow breakfast, then the road back to Jaipur.</p>
+        <p class="days__after reveal"><span class="day__num day__num--sm">29</span> January · Checkout, after a slow breakfast.</p>
 
       </div>
     </section>
@@ -599,8 +573,8 @@
           <div class="wear__item reveal" style="--d:.3s">
             <h3>The wedding</h3>
             <p>Ethnic and regal elegance. Sarees, lehengas, sherwanis, bandhgalas. Please leave bridal red for the bride.</p>
-            <div class="swatches" role="img" aria-label="Suggested colours: rose, powder blue, sage, ivory and gold">
-              <span style="background:#e9c3cf"></span><span style="background:#c9d8e2"></span><span style="background:#8c9a7b"></span><span style="background:#e8dcc0"></span>
+            <div class="swatches" role="img" aria-label="Suggested colours: deep teal, emerald, midnight blue, antique gold">
+              <span style="background:#1f5f6b"></span><span style="background:#2d5a46"></span><span style="background:#2b3550"></span><span style="background:#9a7a3f"></span>
             </div>
           </div>
         </div>
@@ -620,7 +594,7 @@
             <h2 class="venue__name">Ananta <span class="nowrap">Spa &amp; Resort</span><small>Ajabgarh, Rajasthan</small></h2>
           </div>
           <div class="prose">
-            <p>Thirty acres of lawns and villas in a valley of the Aravalli foothills, about two hours’ drive from Jaipur, with the ramparts of Ajabgarh Fort on the ridge above and Bhangarh a short drive away. All three days take place within the resort.</p>
+            <p>Thirty acres of lawns and villas in a valley of the Aravalli foothills, about two hours’ drive from Jaipur, with the ramparts of Ajabgarh Fort on the ridge above and Bhangarh a short drive away. Both days take place within the resort.</p>
             <p>Between celebrations there’s a long pool deck, the Tattva spa, and mustard fields to walk through at golden hour.</p>
           </div>
           <div class="orn-rule reveal" aria-hidden="true"><span class="mono-mark"></span></div>
@@ -647,15 +621,17 @@
             <ul class="spots">
               <li><b>Poolside</b><span>Haldi &amp; Mehendi&nbsp;· Rajasthani Lunch</span></li>
               <li><b>Aravali Lawn</b><span>Sangeet &amp; Godh Tikka</span></li>
-              <li><b>Aravali Hall</b><span>Bhaat &amp; Gaur Puja</span></li>
+              <li><b>Aravali Hall</b><span>Bhaat &amp; Gharva</span></li>
               <li><b>German Hangar Lawn</b><span>Varmala &amp; Pheras</span></li>
             </ul>
           </div>
 
         </div>
 
-        <div class="facts__art reveal" aria-hidden="true">
-            <img class="panel" src="media/panel-venue.svg?v=2" width="400" height="300" alt="" decoding="async" fetchpriority="low">
+        <div class="facts__art reveal">
+          <figure class="photo photo--wide">
+            <img class="photo__img" src="media/images/ananta-1600.jpg" srcset="media/images/ananta-960.jpg 960w, media/images/ananta-1600.jpg 1600w" sizes="(max-width: 860px) 92vw, 40vw" width="1600" height="893" alt="The villas at Ananta, Ajabgarh, at sunset, with the Aravalli hills behind" loading="lazy" decoding="async">
+          </figure>
         </div>
       </div>
     </section>
@@ -674,9 +650,6 @@
           </div>
           <p>A name and a number are all we need. The rest, we’ll take care of.</p>
           <p class="script">Can’t wait to see you there.</p>
-          <div class="rsvp__art reveal" aria-hidden="true">
-            <img class="panel panel--parchment" src="media/panel-rsvp.svg?v=2" width="400" height="300" alt="" decoding="async" fetchpriority="low">
-          </div>
         </div>
 
         <div>
@@ -750,7 +723,7 @@
     <p class="foot__love">Made with love, for the people we love.</p>
   </footer>
 
-  <script src="js/config.js?v=7"></script>
-  <script src="js/main.js?v=13"></script>
+  <script src="js/config.js?v=8"></script>
+  <script src="js/main.js?v=14"></script>
 </body>
 </html>
