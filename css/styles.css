@@ -490,6 +490,30 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 @keyframes hintIn { to { opacity: .95; } }
 @keyframes breathe { 0%, 100% { opacity: .95; } 50% { opacity: .6; } }
 .invite__note { display: inline-block; margin-left: .35em; font-family: var(--display); font-size: 1.05em; letter-spacing: 0; opacity: .85; }
+.music-chip {
+  position: fixed;
+  left: 50%; bottom: max(1.1rem, env(safe-area-inset-bottom));
+  z-index: 60;
+  transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: .5rem;
+  min-height: 2.75rem;
+  padding: .6rem 1.1rem .5rem;
+  border: 1px solid rgba(154, 122, 63, .55);
+  border-radius: 999px;
+  background: rgba(251, 247, 238, .92);
+  color: var(--teal-deep);
+  font-family: var(--caps);
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px -14px rgba(12, 39, 45, .5);
+  cursor: pointer;
+  animation: hintIn .6s var(--ease) .4s both;
+}
+.music-chip[hidden] { display: none; }
+.music-chip span { font-family: var(--display); font-size: 1.15rem; line-height: 1; }
+.music-chip:hover { background: var(--teal); color: var(--gold-pale); border-color: var(--teal); }
+.music-chip:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 .invite__sound { display: block; margin-top: .55rem; font-family: var(--display); font-style: italic; text-transform: none; letter-spacing: .02em; font-size: .98rem; color: var(--ink-soft); opacity: .9; }
 .invite.is-opening .invite__hint { animation: none; opacity: 0; transition: opacity .3s; }
 .invite__skip {
