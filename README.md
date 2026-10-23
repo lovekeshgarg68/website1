@@ -20,7 +20,7 @@ media/              monogram mask, favicons, the three painted panels (SVG), ref
 
 Type: Cormorant Garamond (headings), EB Garamond (text), Marcellus (letterspaced small caps), Pinyon Script (ampersand and two short lines).
 
-The envelope opening plays on every fresh visit to the home page. It is skipped automatically for deep links (`#rsvp`) and for visitors with reduced-motion turned on, and anyone can tap the seal, press Enter, or hit Skip.
+The envelope fills the viewport inside a small margin, on a dark teal ground: handmade parchment (fibres, flecks, mottling) with a torn deckle edge and rounded corners (a nine-slice mask in `--deckle-box`; browsers without `mask-box-image` get plain rounded corners), four panels (left and right wings, base, flap) with gold-foil Mughal ornament, a Tiffany-blue liner inside, a wax seal, and a deckled handmade card. Sections are divided by a fine gold rule with a hanging lozenge (`.seam`); the band below the story holds only the countdown. Opening: the seal gives, the flap lifts, the envelope slips down off the card, the card lifts, then the valley appears behind it. The envelope opening plays on every fresh visit to the home page. It is skipped automatically for deep links (`#rsvp`) and for visitors with reduced-motion turned on, and anyone can tap the seal, press Enter, or hit Skip.
 
 ## Before launch
 
@@ -32,7 +32,6 @@ The envelope opening plays on every fresh visit to the home page. It is skipped 
    5. Copy the Web app URL into `js/config.js` → `SCRIPT_URL`.
    6. If you later change `Code.gs`, use Deploy → Manage deployments → Edit → New version, so the URL stays the same.
 2. **Notes for the couple:** a note left on the RSVP form is saved with the RSVP and copied to the Notes tab. It only appears on the site once you tick **Approved** there. Clear `SAMPLE_NOTES` in `js/config.js` before going live.
-3. **Cocktail (26 Jan):** shown as "By invitation" with no RSVP option. Confirm those ~60 guests directly; they can still use the form for the 27th and 28th.
 4. **Fill in when known:** Sehra Bandi venue, transfer arrangements. Search `to follow` in `index.html`.
 5. Optional: add an RSVP deadline line in the RSVP intro.
 6. **Cache busting:** after editing `js/config.js` (or `main.js` / `styles.css`), bump the `?v=` number on its `<script>`/`<link>` tag in `index.html`. Otherwise returning visitors keep the cached demo-mode config and their RSVPs are never saved.
