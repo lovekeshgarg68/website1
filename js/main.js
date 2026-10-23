@@ -40,7 +40,9 @@
       try {
         const AC = window.AudioContext || window.webkitAudioContext;
         const tapped = !navigator.userActivation || navigator.userActivation.isActive;
-        if (AC && !actx && tapped) {
+        // iPhones and iPads mute Web Audio when the ringer is on silent, but let plain media play: skip the fades there.
+        const ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        if (AC && !actx && tapped && !ios) {
           actx = new AC();
           gain = actx.createGain();
           gain.gain.value = 0;
