@@ -39,7 +39,8 @@
       if (!audio) return;
       try {
         const AC = window.AudioContext || window.webkitAudioContext;
-        if (AC && !actx) {
+        const tapped = !navigator.userActivation || navigator.userActivation.isActive;
+        if (AC && !actx && tapped) {
           actx = new AC();
           gain = actx.createGain();
           gain.gain.value = 0;
