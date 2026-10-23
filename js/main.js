@@ -19,75 +19,54 @@
     if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: "auto" });
   };
 
-  /* A little music with the envelope: the first bars of "Sunsetz", swelling as the flap lifts,
-     settling low as the valley appears, and fading away on its own. Web Audio does the fades
-     (iPhones ignore element volume); if it is unavailable the clip simply plays with its own fades. */
+  /* A little music with the envelope: the first bars of "Sunsetz". It is started ONLY from inside a tap,
+     click or key press on the envelope (browsers refuse sound otherwise), so an envelope that opens by
+     itself stays silent. On iPhone/iPad the clip plays as plain media with the fades baked into the file;
+     elsewhere Web Audio swells it as the flap lifts and settles it as the valley appears. */
   const audio = $("#inviteAudio");
-  const chip = $("#musicChip");
+  const ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   let actx = null, gain = null;
   const music = {
+    playing: false,
     ramp(v, s) {
       if (gain && actx) {
         const t = actx.currentTime;
         gain.gain.cancelScheduledValues(t);
         gain.gain.setValueAtTime(gain.gain.value, t);
         gain.gain.linearRampToValueAtTime(v, t + s);
-      } else if (audio) {
-        try { audio.volume = v; } catch (e) { /* iOS */ }
+      } else if (audio && !ios) {
+        try { audio.volume = v; } catch (e) { /* fine */ }
       }
     },
-    started: false,
-    start() {
-      if (!audio) return;
-      this.started = true;
-      try {
-        const AC = window.AudioContext || window.webkitAudioContext;
-        const tapped = !navigator.userActivation || navigator.userActivation.isActive;
-        // iPhones and iPads mute Web Audio when the ringer is on silent, but let plain media play: skip the fades there.
-        const ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-        if (AC && !actx && tapped && !ios) {
-          actx = new AC();
-          gain = actx.createGain();
-          gain.gain.value = 0;
-          actx.createMediaElementSource(audio).connect(gain).connect(actx.destination);
-        }
-        if (actx && actx.state === "suspended") actx.resume();
-      } catch (e) { actx = null; gain = null; }
-      try { audio.muted = false; } catch (e) { /* fine */ }
-      try { if (audio.currentTime > 0.05) audio.currentTime = 0; } catch (e) { /* not loaded yet */ }
-      const p = audio.play();
-      if (p && p.catch) p.catch(() => {      // no tap yet, so the browser refuses: offer a ♪ button after the reveal
-        this.started = false;
-        if (chip) { chip.hidden = false; }
-      });
-      if (chip) chip.hidden = true;
-      this.ramp(0.7, 1.8);                   // swells as the seal gives and the flap lifts
+    start() {                                   // call this first thing inside the gesture handler
+      if (!audio || this.playing) return;
+      this.playing = true;
+      let p = null;
+      try { p = audio.play(); } catch (e) { p = null; }
+      if (p && p.catch) p.catch(() => { this.playing = false; });
+      if (!ios) {
+        try {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (AC && !actx) {
+            actx = new AC();
+            gain = actx.createGain();
+            gain.gain.value = 0;
+            actx.createMediaElementSource(audio).connect(gain).connect(actx.destination);
+          }
+          if (actx && actx.state === "suspended") actx.resume();
+        } catch (e) { actx = null; gain = null; }
+      }
+      this.ramp(0.7, 1.8);                      // swells as the seal gives and the flap lifts
     },
-    settle() { this.ramp(0.32, 3); },        // eases down as the valley appears, then the clip's own fade ends it
-    stop(s = 0.6) { if (!audio) return; this.ramp(0, s); setTimeout(() => audio.pause(), s * 1000 + 60); }
+    settle() { if (this.playing) this.ramp(0.32, 3); },   // eases down as the valley appears; the clip's own fade ends it
+    stop(s = 0.6) { if (!audio || !this.playing) return; this.ramp(0, s); setTimeout(() => audio.pause(), s * 1000 + 60); }
   };
 
   if (invite && html.classList.contains("has-invite")) {
     html.classList.add("invite-lock");
     behind.forEach((el) => el.setAttribute("inert", ""));
     invite.focus({ preventScroll: true });
-    if (audio) { audio.src = "media/music/sunsetz-intro.mp3"; audio.preload = "auto"; audio.load(); }
     document.addEventListener("visibilitychange", () => { if (document.hidden) music.stop(0.3); });
-    // The first touch anywhere unlocks sound (a silent play/pause), so an envelope that opens by itself can still sing.
-    // Never mute/unmute here: iPhones ignore an unmute that happens outside the tap. The clip starts from
-    // silence anyway, so starting it inside the gesture and pausing it a moment later is inaudible.
-    const unlock = () => {
-      ["pointerdown", "touchstart", "keydown"].forEach((t) => document.removeEventListener(t, unlock, true));
-      if (!audio || music.started) return;
-      try { audio.muted = false; } catch (e) { /* fine */ }
-      const p = audio.play();
-      if (p && p.then) p.then(() => {
-        if (!music.started) { audio.pause(); try { audio.currentTime = 0; } catch (e) { /* fine */ } }
-      }).catch(() => {});
-    };
-    ["pointerdown", "touchstart", "keydown"].forEach((t) => document.addEventListener(t, unlock, { capture: true, passive: true }));
-    chip?.addEventListener("click", () => { music.start(); music.settle(); });
-    audio?.addEventListener("ended", () => { if (chip) chip.hidden = true; });
     const env = $("#env");
     let opened = false;
     let timers = [];
@@ -98,10 +77,10 @@
       music.settle();
       later(() => invite.remove(), 1100);
     };
-    const open = () => {
+    const open = (withSound) => {
       if (opened) return;
       opened = true;
-      music.start();
+      if (withSound) music.start();                       // only ever from a tap, click or key press
       invite.classList.add("is-opening");
       env.classList.add("is-open");                      // the seal gives, the flap lifts, the inside shows
       later(() => env.classList.add("is-out"), 950);     // the envelope slips away, the card lifts
@@ -117,17 +96,24 @@
       revealHero();
       setTimeout(() => invite.remove(), 1000);
     };
-    $("#seal")?.addEventListener("click", (e) => { e.stopPropagation(); open(); });
+    // Any touch on the envelope screen opens it with music. A touch that lands while a silent
+    // automatic opening is already under way still starts the music (it is a real gesture).
+    const tap = () => {
+      if (!opened) open(true);
+      else if (invite.isConnected && !invite.classList.contains("is-done")) music.start();
+    };
+    $("#seal")?.addEventListener("click", (e) => { e.stopPropagation(); tap(); });
     $("#inviteSkip")?.addEventListener("click", (e) => { e.stopPropagation(); skip(); });
-    invite.addEventListener("click", () => { if (!opened) open(); });
+    invite.addEventListener("click", tap);
     document.addEventListener("keydown", (e) => {
       if (!invite.isConnected) return;
       if (e.key === "Escape") { skip(); return; }
       // Focused controls (seal, Skip) activate natively through their click handlers.
       if (e.target instanceof Element && e.target.closest("button, a, input, select, textarea")) return;
-      if ((e.key === "Enter" || e.key === " ") && !opened) { e.preventDefault(); open(); }
+      if ((e.key === "Enter" || e.key === " ") && !opened) { e.preventDefault(); open(true); }
     });
-    later(open, reduceMotion ? 8000 : 3800); // open by itself if nobody taps (longer when motion is reduced, since it opens without animation)
+    // Opens by itself, silently, if nobody taps. A tap that lands while that is under way still starts the music.
+    later(() => open(false), reduceMotion ? 8000 : 4500);
   } else {
     revealHero();
   }
