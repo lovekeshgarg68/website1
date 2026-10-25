@@ -162,11 +162,11 @@ h1, h2, h3, .day__name { text-wrap: balance; }
 }
 .mono-mark {
   display: inline-block;
-  width: 2.3rem;
-  aspect-ratio: 1;
-  background: var(--teal);
-  -webkit-mask: url("../media/monogram-mask.png") center / contain no-repeat;
-  mask: url("../media/monogram-mask.png") center / contain no-repeat;
+  width: 2.6rem;
+  aspect-ratio: 743 / 586;
+  background: var(--gold-deep);
+  -webkit-mask: url("../media/monogram-mask.png?v=2") center / contain no-repeat;
+  mask: url("../media/monogram-mask.png?v=2") center / contain no-repeat;
 }
 
 .nav__links { display: flex; gap: clamp(1rem, 2.5vw, 2.2rem); list-style: none; margin: 0; padding: 0; }
@@ -634,7 +634,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
   text-align: center;
 }
 .env__card::before { content: ""; position: absolute; inset: 11px; border: 1px solid rgba(154, 122, 63, .38); border-radius: 6px; pointer-events: none; }
-.env__crest { width: clamp(2rem, 7vw, 3.2rem); margin-bottom: 1rem; background: var(--teal); }
+.env__crest { width: clamp(2.6rem, 9vw, 4rem); margin-bottom: 1rem; background: var(--gold-deep); }
 .env__names { display: grid; gap: .02em; font-family: var(--display); font-weight: 300; font-size: clamp(1.55rem, 6.4vw, 2.5rem); color: var(--ink); margin: 0 0 .9rem; line-height: 1.05; }
 .env__names .amp { font-family: var(--script); color: var(--gold-deep); font-size: .8em; line-height: 1; }
 .env__rule { width: 2.4rem; height: 1px; background: var(--gold-frame); margin-bottom: .9rem; }
@@ -667,10 +667,10 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 @keyframes ripple { 0% { transform: scale(.94); opacity: .7; } 100% { transform: scale(1.5); opacity: 0; } }
 .seal__mono {
   position: absolute;
-  left: 27%; top: 25%; width: 46%; height: 46%;
+  left: 21%; top: 29%; width: 58%; height: 42%;
   background: #f7e9bd;
-  -webkit-mask: url("../media/monogram-mask.png") center / contain no-repeat;
-  mask: url("../media/monogram-mask.png") center / contain no-repeat;
+  -webkit-mask: url("../media/monogram-mask.png?v=2") center / contain no-repeat;
+  mask: url("../media/monogram-mask.png?v=2") center / contain no-repeat;
 }
 .seal__mono--shade { background: rgba(60, 40, 8, .65); transform: translate(-1.5px, -1.5px); }
 .seal:hover { transform: translate(-50%, -50%) scale(1.04); }
@@ -967,22 +967,18 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .wear .motif--buta { right: -5rem; bottom: -6rem; width: clamp(16rem, 30vw, 28rem); opacity: .18; transform: rotate(-12deg); }
 .wear .motif--buta path, .wear .motif--buta circle { stroke: var(--teal); }
 .wear .motif--buta circle { fill: var(--teal); }
-.wear__head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(12rem, 20rem);
-  gap: 2rem clamp(2rem, 6vw, 6rem);
-  align-items: end;
-  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
-}
+.wear__head { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
 .wear__head .section__head { margin-bottom: 0; }
-.wear__art svg { width: 100%; height: auto; box-shadow: 0 22px 30px -20px rgba(120, 34, 79, .5); }
-.wear__art .garment path { stroke-dasharray: 640; stroke-dashoffset: 640; }
-.wear__art.is-in .garment path { animation: draw 2.6s var(--ease) forwards; }
-.wear__art.is-in .garment--bandhgala path { animation-delay: .5s; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
+/* the designer's plates for three of the days */
+.looks { list-style: none; margin: 0 0 clamp(2.5rem, 6vw, 4.5rem); padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.2rem, 3vw, 2.5rem); align-items: end; }
+.look figure { margin: 0; display: grid; justify-items: center; gap: .8rem; }
+.look img { display: block; width: 100%; height: auto; max-height: 32rem; object-fit: contain; object-position: bottom; filter: drop-shadow(0 16px 18px rgba(120, 34, 79, .16)); }
+.look figcaption { font-family: var(--caps); font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-text); padding-inline-start: .24em; }
 @media (max-width: 760px) {
-  .wear__head { grid-template-columns: 1fr; }
-  .wear__art { max-width: 15rem; }
+  .looks { display: flex; gap: 1rem; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .looks::-webkit-scrollbar { display: none; }
+  .look { flex: 0 0 66vw; scroll-snap-align: center; }
+  .look img { max-height: 26rem; }
 }
 .wear__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3.5rem); }
 @media (max-width: 1150px) { .wear__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -1033,7 +1029,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .orn-rule { display: flex; align-items: center; gap: 1rem; margin: 1.6rem 0 .2rem; }
 .orn-rule::before, .orn-rule::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--champagne)); }
 .orn-rule::after { background: linear-gradient(90deg, var(--champagne), transparent); }
-.orn-rule .mono-mark { width: 1.6rem; background: var(--teal); opacity: .75; }
+.orn-rule .mono-mark { width: 2rem; background: var(--gold-deep); opacity: .8; }
 .venue__map {
   margin-top: 0;
   aspect-ratio: 4 / 3;
@@ -1292,7 +1288,6 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
   .seal::after { animation: none; }
   .flock, .bird, .firefly { animation: none; }
   .firefly { opacity: .7; }
-  .wear__art .garment path { stroke-dashoffset: 0; animation: none; }
   .reveal { opacity: 1; transform: none; }
   .wall__track { animation: none; width: auto; flex-wrap: wrap; padding-inline: 0; }
   .wall__track .note--clone { display: none; }
