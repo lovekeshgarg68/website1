@@ -714,6 +714,8 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .seam::before, .seam::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--champagne)); }
 .seam::after { background: linear-gradient(90deg, var(--champagne), transparent); }
 .seam i { flex: 0 0 auto; width: 7px; height: 7px; margin: 0 .9rem; background: var(--gold); transform: translateY(2px) rotate(45deg); }
+.foot .seam::before, .foot .seam::after { background: linear-gradient(90deg, transparent, var(--gold-pale)); }
+.foot .seam::after { background: linear-gradient(90deg, var(--gold-pale), transparent); }
 .seam i::after { content: ""; position: absolute; inset: -4px; border: 1px solid rgba(201, 162, 74, .5); }
 
 /* Soft washes of colour, like the splatter on the wreath */
@@ -766,7 +768,6 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 /* About us: the photograph, simply, with a hairline border */
 .photo { position: relative; width: 100%; margin: 0; padding: 6px; background: #fbf7ee; border: 1px solid rgba(154, 122, 63, .45); border-radius: 4px; box-shadow: 0 24px 34px -22px rgba(24, 76, 87, .4), 0 2px 0 rgba(24, 76, 87, .06); }
 .photo__img { display: block; width: 100%; height: auto; aspect-ratio: 885 / 1001; object-fit: cover; border-radius: 2px; }
-.panel { width: 100%; height: auto; box-shadow: 0 24px 34px -22px rgba(24, 76, 87, .45), 0 2px 0 rgba(24, 76, 87, .08); }
 
 @media (max-width: 860px) {
   .story__grid { grid-template-columns: 1fr; }
@@ -910,7 +911,6 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .event__desc { margin-top: .4rem; color: var(--ink-soft); max-width: 44ch; }
 .event__venue { margin-top: .5rem; font-family: var(--display); font-size: .95rem; letter-spacing: .08em; color: var(--teal-ink); }
 .event__venue::before { content: ""; display: inline-block; width: 1.2rem; height: 1px; background: var(--gold-pale); vertical-align: middle; margin-right: .6rem; }
-.event__tag { margin-top: .6rem; display: inline-block; font-family: var(--caps); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-text); border: 1px solid var(--champagne-pale); border-radius: 999px; padding: .32rem .56rem .26rem .78rem; }
 .event__motif { width: 3.2rem; height: 3.2rem; color: var(--gold-deep); opacity: .9; justify-self: end; margin-top: .1rem; }
 .event__motif svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: .9; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -1243,20 +1243,10 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .foot {
   background: linear-gradient(180deg, var(--teal-deep), #0f3138);
   color: var(--ivory);
-  border-top: 1px solid var(--gold-deep);
   padding: clamp(5rem, 10vw, 8rem) var(--gutter) 3rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-}
-.foot::before {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; top: 0;
-  height: 26px;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='26' viewBox='0 0 48 26' fill='none' stroke='%23b8975a' stroke-width='1'><path d='M0 0c4 12 10 16 24 16S44 12 48 0'/><path d='M24 16v4'/><circle cx='24' cy='21' r='3.6' fill='%23d98fa8' stroke='none'/><circle cx='24' cy='21' r='1.6' fill='%23c9a24a' stroke='none'/></svg>") center top / 48px 26px repeat-x;
-  opacity: .95;
-  pointer-events: none;
 }
 .foot__names {
   font-family: var(--display);
