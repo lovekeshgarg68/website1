@@ -8,14 +8,14 @@ css/styles.css      design tokens and styles
 js/config.js        the only file to edit before launch
 js/main.js          invitation opening, navigation, timeline, forms, guestbook
 apps-script/Code.gs Google Sheets backend for RSVP + notes
-media/              monogram mask, favicons, images/us.jpeg (About us) and images/ananta-*.jpg (Venue; the 3 MB original is gitignored), reference images
+media/              monogram mask, favicons, images/us.jpeg (About us) and images/ananta-*.jpg (Venue; the 3 MB original is gitignored), images/wear-*.webp (the designer's three wardrobe plates, transparent backgrounds, 1200px and 600px), reference images
 ```
 
 ## The logo on the site
 
 `media/logo_monogram.jpg` is the original. The site uses only the monogram from it (the wreath is not used on the page):
 
-- `monogram-mask.png` — the "AL" monogram as a single-colour mask; CSS tints it for the wax seal, the nav mark and the crest on the invitation card.
+- `monogram-mask.png` — the designer's "AL" monogram (serif letters, swash and butterfly, Oct 2026) as a single-colour mask, cut from `media/logo_monogram.jpg`'s successor; CSS tints it gold for the nav mark, card crest and venue rule, and pale gold on the wax seal. Favicons are generated from it.
 - `favicon.png`, `apple-touch-icon.png` — the monogram on an ivory disc.
 
 Type: Cormorant Garamond (headings), EB Garamond (text), Marcellus (letterspaced small caps), Pinyon Script (ampersand and two short lines).
