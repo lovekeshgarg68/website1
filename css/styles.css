@@ -471,33 +471,27 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .orn-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .invite__stage { position: absolute; inset: 0; animation: stageIn .9s var(--ease) both; }
 @keyframes stageIn { from { opacity: 0; } to { opacity: 1; } }
-/* The prompt: a small parchment card so it reads at a glance, with the sound line given equal weight */
+/* The prompt: quiet lettering on the paper, with the sound line beneath */
 .invite__hint {
   position: absolute;
-  left: 50%;
-  bottom: max(calc(var(--env-margin) + clamp(1.6rem, 4vh, 2.6rem)), env(safe-area-inset-bottom));
+  left: 0; right: 0;
+  bottom: max(calc(var(--env-margin) + clamp(2rem, 5vh, 3rem)), env(safe-area-inset-bottom));
   z-index: 6;
-  width: max-content;
-  max-width: min(86vw, 24rem);
   margin: 0;
-  padding: .7rem 1.15rem .65rem;
-  transform: translateX(-50%);
+  padding: 0 var(--gutter);
   text-align: center;
-  background: rgba(251, 247, 238, .62);
-  border: 1px solid rgba(154, 122, 63, .28);
-  border-radius: .9rem;
-  color: var(--ink);
+  color: var(--gold-text);
   font-family: var(--caps);
   text-transform: uppercase;
-  letter-spacing: .26em;
+  letter-spacing: .3em;
   font-size: .72rem;
   opacity: 0;
   animation: hintIn .8s var(--ease) .6s forwards, breathe 3s ease-in-out 1.8s infinite;
 }
-.invite__tap { display: block; padding-inline-start: .26em; }
-@keyframes hintIn { to { opacity: 1; } }
-@keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: .86; } }
-.invite__sound { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-top: .4rem; padding-top: .4rem; border-top: 1px solid rgba(154, 122, 63, .22); font-family: var(--display); font-style: italic; text-transform: none; letter-spacing: .01em; font-size: .98rem; line-height: 1.25; color: var(--ink-soft); }
+.invite__tap { display: block; padding-inline-start: .3em; }
+@keyframes hintIn { to { opacity: .95; } }
+@keyframes breathe { 0%, 100% { opacity: .95; } 50% { opacity: .72; } }
+.invite__sound { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-top: .55rem; font-family: var(--display); font-style: italic; text-transform: none; letter-spacing: .02em; font-size: .98rem; line-height: 1.25; color: var(--ink-soft); opacity: .9; }
 .invite__speaker { flex: 0 0 auto; width: 1rem; height: 1rem; fill: none; stroke: var(--gold-text); stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
 .invite.is-opening .invite__hint { animation: none; opacity: 0; transition: opacity .3s; }
 .invite__skip {
@@ -707,7 +701,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
   .env__rule { margin-bottom: .5rem; }
   .env__when, .env__where { font-size: .56rem; }
   .env__return, .orn--side, .orn--pendant { display: none; }
-  .invite__hint { bottom: calc(var(--env-margin) + 2.2rem); padding: .55rem 1rem .5rem; font-size: .68rem; }
+  .invite__hint { bottom: calc(var(--env-margin) + 2.6rem); }
   .invite__sound { display: none; }
 }
 
