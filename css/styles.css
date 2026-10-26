@@ -279,7 +279,7 @@ html.has-invite:not(.is-revealed) .hero__frame { animation-play-state: paused; }
   animation: rise 1.4s var(--ease) .2s forwards;
 }
 .hero__kicker { display: grid; justify-items: center; gap: .45rem; }
-.hero__kicker-script { font-family: var(--script); font-size: clamp(1.55rem, 4.2vw, 2.1rem); line-height: 1; color: var(--gold-deep); text-transform: none; letter-spacing: 0; padding-right: .15em; }
+.hero__kicker-script { font-family: var(--script); font-size: clamp(1.55rem, 4.2vw, 2.1rem); line-height: 1; color: var(--ink); text-transform: none; letter-spacing: 0; padding-right: .15em; }
 .hero__kicker-caps { font-size: clamp(.66rem, 1.6vw, .78rem); letter-spacing: .32em; }
 
 .hero__names {
