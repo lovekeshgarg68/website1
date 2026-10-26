@@ -84,8 +84,8 @@
       invite.classList.add("is-opening");
       env.classList.add("is-open");                      // the seal gives, the flap lifts, the inside shows
       later(() => env.classList.add("is-out"), 950);     // the envelope slips away, the card lifts
-      later(() => env.classList.add("is-zoom"), 3500);   // a short look at the card, then it comes towards you
-      later(finish, 3850);                               // and the valley appears behind it
+      later(() => env.classList.add("is-zoom"), 5000);   // the card rests for three seconds, then comes towards you
+      later(finish, 5350);                               // and the valley appears behind it
     };
     const skip = () => {
       timers.forEach(clearTimeout);
