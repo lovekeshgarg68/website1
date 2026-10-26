@@ -113,7 +113,7 @@
       if ((e.key === "Enter" || e.key === " ") && !opened) { e.preventDefault(); open(true); }
     });
     // Opens by itself, silently, if nobody taps. A tap that lands while that is under way still starts the music.
-    later(() => open(false), reduceMotion ? 8000 : 4500);
+    later(() => open(false), reduceMotion ? 10000 : 8000);   // first-time guests need a moment to read the prompt and tap
   } else {
     revealHero();
   }
