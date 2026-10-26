@@ -635,7 +635,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 }
 .env__card::before { content: ""; position: absolute; inset: 11px; border: 1px solid rgba(154, 122, 63, .38); border-radius: 6px; pointer-events: none; }
 .env__crest { width: clamp(2.6rem, 9vw, 4rem); margin-bottom: 1rem; background: var(--gold-deep); }
-.env__names { display: grid; gap: .02em; font-family: var(--display); font-weight: 300; font-size: clamp(1.55rem, 6.4vw, 2.5rem); color: var(--ink); margin: 0 0 .9rem; line-height: 1.05; }
+.env__names { font-family: var(--display); font-weight: 300; font-size: clamp(1.5rem, 6vw, 2.2rem); color: var(--ink); margin: 0 0 .9rem; line-height: 1.12; text-wrap: balance; max-width: 11ch; }
 .env__names .amp { font-family: var(--script); color: var(--gold-deep); font-size: .8em; line-height: 1; }
 .env__rule { width: 2.4rem; height: 1px; background: var(--gold-frame); margin-bottom: .9rem; }
 .env__when, .env__where { font-family: var(--caps); text-transform: uppercase; margin: 0; font-variant-numeric: lining-nums; }
@@ -693,7 +693,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 @media (max-height: 520px) {
   .env__card { padding: .7rem 1rem; }
   .env__crest { width: 1.6rem; margin-bottom: .4rem; }
-  .env__names { font-size: clamp(1.1rem, 4.4vh, 1.8rem); margin-bottom: .5rem; }
+  .env__names { font-size: clamp(1rem, 4vh, 1.5rem); margin-bottom: .5rem; }
   .env__rule { margin-bottom: .5rem; }
   .env__when, .env__where { font-size: .56rem; }
   .env__return, .orn--side, .orn--pendant { display: none; }
