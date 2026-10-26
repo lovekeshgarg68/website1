@@ -919,7 +919,11 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .event__venue { margin-top: .5rem; font-family: var(--display); font-size: .95rem; letter-spacing: .08em; color: var(--teal-ink); }
 .event__venue::before { content: ""; display: inline-block; width: 1.2rem; height: 1px; background: var(--gold-pale); vertical-align: middle; margin-right: .6rem; }
 .event__motif { width: 3.2rem; height: 3.2rem; color: var(--gold-deep); opacity: .9; justify-self: end; margin-top: .1rem; }
-.event__motif svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: .9; stroke-linecap: round; stroke-linejoin: round; }
+.event__motif svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.event__motif--img { background: currentColor; -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
+.event__motif--mehendi { --icon: url("../media/icons/mehendi.png"); }
+.event__motif--lunch { --icon: url("../media/icons/lunch.png"); }
+.event__motif--lotus { --icon: url("../media/icons/lotus.png"); }
 
 @media (max-width: 560px) {
   .event { grid-template-columns: 1fr auto; }
