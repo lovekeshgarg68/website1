@@ -8,7 +8,7 @@ css/styles.css      design tokens and styles
 js/config.js        the only file to edit before launch
 js/main.js          invitation opening, navigation, timeline, forms, guestbook
 apps-script/Code.gs Google Sheets backend for RSVP + notes
-media/              monogram masks, favicons, share.jpg (WhatsApp/link preview), icons/ (event icons), images/us.jpeg (About us) and images/ananta-*.jpg (Venue; the 3 MB original is gitignored), images/wear-*.webp (the designer's three wardrobe plates, transparent backgrounds, 1200px and 600px), reference images
+media/              monogram masks, favicons, share.jpg (WhatsApp/link preview), icons/ (event icons), images/us.jpeg (About us) and images/ananta-*.jpg (Venue; the 3 MB original is gitignored), images/wear-*.webp (the designer's four wardrobe plates, transparent backgrounds, 1200px and 600px, one per occasion row), reference images
 tools/share-card.html the 1200x630 card that media/share.jpg is rendered from
 ```
 
@@ -18,7 +18,6 @@ tools/share-card.html the 1200x630 card that media/share.jpg is rendered from
 
 - `monogram-mask.png` + `monogram-heart.png` — the designer's "AL" monogram with the Tiffany heart (29 Oct 2026) as two alpha masks on one 900x795 canvas: the gold layer (letters, swash, dot, the heart's bezel and bail, redrawn in gold in place of the photographed silver mount) and the heart itself. `.mono-mark` and `.seal__mono` paint them as `::before` (gold) and `::after` (heart) so the colours stay in CSS: `--mono-gold` / `--mono-heart`, defaulting to `--gold-deep` and `--tiffany` (#33c5bb, the stone's own body colour). Used in the nav, the card crest, the wax seal, the venue rule and the footer. A 6° hue nudge of the deep teals toward the heart was tried the same day and reverted: the teal family stays as it was (`--teal #1f5f6b`, `--teal-deep #184c57`).
 - `favicon.png`, `apple-touch-icon.png` — the monogram on a teal disc.
-- `images/family-1600.jpg`, `images/family-960.jpg` — both families, in the RSVP section (from the 2000px original, not kept in the repo).
 - `share.jpg` — 1200x630 link preview (WhatsApp, iMessage, social). Regenerate by opening `tools/share-card.html` through the local server at a 1200x630 viewport and screenshotting at 1x, e.g. Chrome headless: `--headless=new --window-size=1200,630 --force-device-scale-factor=1 --virtual-time-budget=6000 --screenshot=share.png http://localhost:8080/tools/share-card.html`, then save as JPEG (quality ~88) and bump `?v=` on the `og:image` tag.
 
 Type: Cormorant Garamond (headings), EB Garamond (text), Marcellus (letterspaced small caps), Pinyon Script (ampersand and two short lines).

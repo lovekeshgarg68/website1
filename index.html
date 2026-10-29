@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Marcellus&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="media/monogram-mask.png?v=3" crossorigin="anonymous">
   <link rel="preload" as="image" href="media/monogram-heart.png?v=3" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/styles.css?v=88">
+  <link rel="stylesheet" href="css/styles.css?v=89">
 </head>
 <body>
 
@@ -54,7 +54,7 @@
         </div>
         <div class="env__body">
           <div class="env__fold env__wings" aria-hidden="true"><div class="env__paper env__paper--l"></div><div class="env__paper env__paper--r"></div></div>
-          <div class="env__fold env__basewrap" aria-hidden="true"><div class="env__paper env__paper--b"><svg class="env__piping" viewBox="0 0 100 68" preserveAspectRatio="none"><path d="M0 68 L50 38.7 L100 68" fill="none" stroke="#c9a24a" stroke-width="1.1" opacity=".9" vector-effect="non-scaling-stroke"/><path d="M2.4 68 L50 41.4 L97.6 68" fill="none" stroke="#b8975a" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="0 2.8" opacity=".85" vector-effect="non-scaling-stroke"/></svg></div></div>
+          <div class="env__fold env__basewrap" aria-hidden="true"><div class="env__paper env__paper--b"><svg class="env__piping" viewBox="0 0 100 68" preserveAspectRatio="none"><path d="M0 68 L50 33.3 L100 68" fill="none" stroke="#c9a24a" stroke-width="1.1" opacity=".9" vector-effect="non-scaling-stroke"/><path d="M2.4 68 L50 36 L97.6 68" fill="none" stroke="#b8975a" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="0 2.8" opacity=".85" vector-effect="non-scaling-stroke"/></svg></div></div>
           <div class="env__frame env__frame--body" aria-hidden="true"></div>
           <svg class="orn orn--side orn--side-l" viewBox="0 0 112 260" aria-hidden="true"><use href="#s-side" class="orn__lo"/><use href="#s-side" class="orn__hi"/><use href="#s-side" class="orn__foil"/></svg>
           <svg class="orn orn--side orn--side-r" viewBox="0 0 112 260" aria-hidden="true"><use href="#s-side" class="orn__lo"/><use href="#s-side" class="orn__hi"/><use href="#s-side" class="orn__foil"/></svg>
@@ -531,40 +531,47 @@
             <p class="script wear__sign">Love, Kansha</p>
           </div>
         </div>
-        <ul class="looks reveal" aria-label="A few looks our designer drew for the days">
-          <li class="look"><figure><img src="media/images/wear-haldi.webp" srcset="media/images/wear-haldi-600.webp 403w, media/images/wear-haldi.webp 805w" sizes="(max-width: 760px) 66vw, 22vw" width="805" height="1200" alt="A peach kurta and a pink paisley drape" loading="lazy" decoding="async"><figcaption>Haldi &amp; Mehendi</figcaption></figure></li>
-          <li class="look"><figure><img src="media/images/wear-sangeet.webp" srcset="media/images/wear-sangeet-600.webp 423w, media/images/wear-sangeet.webp 845w" sizes="(max-width: 760px) 66vw, 22vw" width="845" height="1200" alt="A wine bandhgala and a black sequinned lehenga" loading="lazy" decoding="async"><figcaption>Sangeet</figcaption></figure></li>
-          <li class="look"><figure><img src="media/images/wear-wedding.webp?v=2" srcset="media/images/wear-wedding-600.webp?v=2 384w, media/images/wear-wedding.webp?v=2 767w" sizes="(max-width: 760px) 66vw, 22vw" width="767" height="1200" alt="An emerald lehenga with a rust border and an ivory sherwani" loading="lazy" decoding="async"><figcaption>The wedding</figcaption></figure></li>
-        </ul>
-        <div class="wear__grid">
-          <div class="wear__item reveal">
-            <h3>Haldi &amp; Mehendi</h3>
-            <p>A burst of pastels, or floral fusion. Turmeric does not come out, so nothing precious.</p>
-            <div class="swatches" role="img" aria-label="Suggested colours: butter yellow, marigold, sage, blush">
-              <span style="background:#f1e3b9"></span><span style="background:#e0a84a"></span><span style="background:#c3cbb0"></span><span style="background:#f1d9cf"></span>
+        <div class="wear__rows">
+          <article class="wear__row reveal">
+  <div class="wear__item">
+              <h3>Haldi &amp; Mehendi</h3>
+              <p>A burst of pastels, or floral fusion. Turmeric does not come out, so nothing precious.</p>
+              <div class="swatches" role="img" aria-label="Suggested colours: butter yellow, marigold, sage, blush">
+                <span style="background:#f1e3b9"></span><span style="background:#e0a84a"></span><span style="background:#c3cbb0"></span><span style="background:#f1d9cf"></span>
+              </div>
             </div>
-          </div>
-          <div class="wear__item reveal" style="--d:.1s">
-            <h3>Sangeet</h3>
-            <p>Light evening glamour in contemporary Indian. Embroidery, shimmer, things that move when you dance.</p>
-            <div class="swatches" role="img" aria-label="Suggested colours: peacock teal, antique gold, plum, rose">
-              <span style="background:#1f5f6b"></span><span style="background:#c9a24a"></span><span style="background:#6b2140"></span><span style="background:#d98fa8"></span>
+            <figure class="wear__plate"><img src="media/images/wear-haldi.webp" srcset="media/images/wear-haldi-600.webp 403w, media/images/wear-haldi.webp 805w" sizes="(max-width: 760px) 30vw, 11rem" width="805" height="1200" alt="A peach kurta and a pink paisley drape" loading="lazy" decoding="async"></figure>
+          </article>
+          <article class="wear__row reveal" style="--d:.1s">
+  <div class="wear__item">
+              <h3>Sangeet</h3>
+              <p>Light evening glamour in contemporary Indian. Embroidery, shimmer, things that move when you dance.</p>
+              <div class="swatches" role="img" aria-label="Suggested colours: peacock teal, antique gold, plum, rose">
+                <span style="background:#1f5f6b"></span><span style="background:#c9a24a"></span><span style="background:#6b2140"></span><span style="background:#d98fa8"></span>
+              </div>
             </div>
-          </div>
-          <div class="wear__item reveal" style="--d:.2s">
-            <h3>Bhaat &amp; Gharva</h3>
-            <p>Festive, in warm colours inspired by marigold and spices.</p>
-            <div class="swatches" role="img" aria-label="Suggested colours: marigold, saffron, turmeric, cinnamon">
-              <span style="background:#e8a33a"></span><span style="background:#d9772f"></span><span style="background:#e0b34a"></span><span style="background:#9a5a3a"></span>
+            <figure class="wear__plate"><img src="media/images/wear-sangeet.webp" srcset="media/images/wear-sangeet-600.webp 423w, media/images/wear-sangeet.webp 845w" sizes="(max-width: 760px) 30vw, 11rem" width="845" height="1200" alt="A wine bandhgala and a black sequinned lehenga" loading="lazy" decoding="async"></figure>
+          </article>
+          <article class="wear__row reveal" style="--d:.2s">
+  <div class="wear__item">
+              <h3>Bhaat &amp; Gharva</h3>
+              <p>Festive, in warm colours inspired by marigold and spices.</p>
+              <div class="swatches" role="img" aria-label="Suggested colours: marigold, saffron, turmeric, cinnamon">
+                <span style="background:#e8a33a"></span><span style="background:#d9772f"></span><span style="background:#e0b34a"></span><span style="background:#9a5a3a"></span>
+              </div>
             </div>
-          </div>
-          <div class="wear__item reveal" style="--d:.3s">
-            <h3>The wedding</h3>
-            <p>Ethnic and regal elegance. Sarees, lehengas, sherwanis, bandhgalas. Please leave bridal red for the bride.</p>
-            <div class="swatches" role="img" aria-label="Suggested colours: deep teal, emerald, midnight blue, antique gold">
-              <span style="background:#1f5f6b"></span><span style="background:#2d5a46"></span><span style="background:#2b3550"></span><span style="background:#9a7a3f"></span>
+            <figure class="wear__plate"><img src="media/images/wear-bhaat.webp" srcset="media/images/wear-bhaat-600.webp 272w, media/images/wear-bhaat.webp 545w" sizes="(max-width: 760px) 30vw, 11rem" width="545" height="1200" alt="A gold sequinned sherwani and an orange saree with a gold border" loading="lazy" decoding="async"></figure>
+          </article>
+          <article class="wear__row reveal" style="--d:.3s">
+  <div class="wear__item">
+              <h3>The wedding</h3>
+              <p>Ethnic and regal elegance. Sarees, lehengas, sherwanis, bandhgalas. Please leave bridal red for the bride.</p>
+              <div class="swatches" role="img" aria-label="Suggested colours: deep teal, emerald, midnight blue, antique gold">
+                <span style="background:#1f5f6b"></span><span style="background:#2d5a46"></span><span style="background:#2b3550"></span><span style="background:#9a7a3f"></span>
+              </div>
             </div>
-          </div>
+            <figure class="wear__plate"><img src="media/images/wear-wedding.webp?v=2" srcset="media/images/wear-wedding-600.webp?v=2 384w, media/images/wear-wedding.webp?v=2 767w" sizes="(max-width: 760px) 30vw, 11rem" width="767" height="1200" alt="An emerald lehenga with a rust border and an ivory sherwani" loading="lazy" decoding="async"></figure>
+          </article>
         </div>
         <p class="wear__note">January in Rajasthan is sunny by day and genuinely cold once the sun sets, often around 7°C. Bring a shawl or a jacket for the evenings, and shoes that can manage lawns.</p>
       </div>
@@ -629,18 +636,6 @@
     <section class="section rsvp" id="rsvp">
       <div class="seam" aria-hidden="true"><i></i></div>
       <span class="blot blot--plum" aria-hidden="true"></span>
-      <div class="wrap family">
-        <figure class="photo photo--family reveal">
-          <img class="photo__img" src="media/images/family-1600.jpg" srcset="media/images/family-960.jpg 960w, media/images/family-1600.jpg 1600w" sizes="(max-width: 860px) 92vw, 56vw" width="1600" height="1067" alt="Aakanksha and Lovekesh with both their families" loading="lazy" decoding="async">
-        </figure>
-        <div class="family__text">
-          <div class="section__head reveal">
-            <p class="caps caps--orn">Our families</p>
-            <h2 class="section__title">Two families, <em>one celebration.</em></h2>
-          </div>
-          <p class="reveal">With the blessings of our parents, and both our families beside us, we can’t wait to welcome you in Ajabgarh.</p>
-        </div>
-      </div>
       <div class="wrap rsvp__grid">
         <div class="rsvp__intro">
           <div class="section__head reveal">

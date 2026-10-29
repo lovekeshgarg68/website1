@@ -592,15 +592,15 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .env__wings { z-index: 1; filter: drop-shadow(0 2px 3px rgba(70, 50, 20, .34)); }
 .env__basewrap { z-index: 2; filter: drop-shadow(0 -3px 5px rgba(70, 50, 20, .26)); }
 .env__paper { background: var(--paper-stack), linear-gradient(180deg, #ecdfc2, #e4d5b4); }
-.env__paper--l { clip-path: polygon(0 0, 50.4% 56%, 0 100%); background: var(--paper-stack), linear-gradient(100deg, #f3e9d3 0%, #ebdfc2 60%, #e5d7b8 100%); }
-.env__paper--r { clip-path: polygon(100% 0, 49.6% 56%, 100% 100%); background: var(--paper-stack), linear-gradient(260deg, #f3e9d3 0%, #ebdfc2 60%, #e5d7b8 100%); }
-.env__paper--b { clip-path: polygon(0 100%, 50% 55.6%, 100% 100%); background: var(--paper-stack), linear-gradient(180deg, #eee2c6 0%, #e7d9b9 55%, #e1d2b0 100%); }
+.env__paper--l { clip-path: polygon(0 0, 50.4% 48%, 0 100%); background: var(--paper-stack), linear-gradient(100deg, #f3e9d3 0%, #ebdfc2 60%, #e5d7b8 100%); }
+.env__paper--r { clip-path: polygon(100% 0, 49.6% 48%, 100% 100%); background: var(--paper-stack), linear-gradient(260deg, #f3e9d3 0%, #ebdfc2 60%, #e5d7b8 100%); }
+.env__paper--b { clip-path: polygon(0 100%, 50% 47.6%, 100% 100%); background: var(--paper-stack), linear-gradient(180deg, #eee2c6 0%, #e7d9b9 55%, #e1d2b0 100%); }
 .env__piping { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .env__frame { pointer-events: none; z-index: 4; }
 .env__frame::before, .env__frame::after { content: ""; position: absolute; border: 1px solid; }
 .env__frame::before { inset: 18px; border-radius: 14px; border-color: rgba(201, 162, 74, .95); }
 .env__frame::after { inset: 23px; border-radius: 10px; border-color: rgba(201, 162, 74, .5); }
-.env__frame--body { clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%); }
+.env__frame--body { clip-path: polygon(0 0, 50% 48%, 100% 0, 100% 100%, 0 100%); }
 
 /* Gold-foil ornament, blind-embossed into the paper */
 .orn { position: absolute; pointer-events: none; overflow: visible; }
@@ -611,11 +611,11 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .orn--side { z-index: 5; top: 50%; height: clamp(150px, 26vh, 260px); aspect-ratio: 112 / 260; }
 .orn--side-l { left: 18px; transform: translateY(-50%); }
 .orn--side-r { right: 18px; transform: translateY(-50%) scaleX(-1); }
-.orn--pendant { left: 50%; bottom: calc(42% + clamp(48px, 8.2vw, 68px)); width: clamp(84px, 19vw, 136px); aspect-ratio: 120 / 160; transform: translateX(-50%); }
+.orn--pendant { left: 50%; bottom: calc(50% + clamp(48px, 8.2vw, 68px)); width: clamp(84px, 19vw, 136px); aspect-ratio: 120 / 160; transform: translateX(-50%); }
 
 /* the flap's soft shadow on the paper below it */
 .env__shadewrap { z-index: 3; pointer-events: none; filter: blur(8px); opacity: .95; transition: opacity .7s var(--ease); }
-.env__shade { clip-path: polygon(0 0, 100% 0, 50% 58%); background: rgba(70, 48, 14, .42); transform: translateY(13px); }
+.env__shade { clip-path: polygon(0 0, 100% 0, 50% 50%); background: rgba(70, 48, 14, .42); transform: translateY(13px); }
 
 .env__flapwrap {
   z-index: 6;
@@ -626,12 +626,12 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
   transition: transform 1.05s cubic-bezier(.62, 0, .22, 1) .1s, opacity .2s;
 }
 .env__flap, .env__flapback {
-  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 .env__flap { background: var(--paper-stack), linear-gradient(180deg, #f8f2e3 0%, #f1e7d1 60%, #ecdfc5 100%); }
-.env__flap .env__piping { height: 58%; }
+.env__flap .env__piping { height: 50%; }
 .env__return {
   position: absolute;
   left: 0; right: 0;
@@ -647,7 +647,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
   opacity: .9;
 }
 .env__flapback {
-  clip-path: polygon(0 100%, 100% 100%, 50% 42%);   /* hinged at the fold, so it mirrors the front */
+  clip-path: polygon(0 100%, 100% 100%, 50% 50%);   /* hinged at the fold, so it mirrors the front */
   transform: rotateX(180deg);
   background: var(--booti-liner) center / 60px 70px repeat, linear-gradient(180deg, var(--tiffany-deep), var(--tiffany));
 }
@@ -685,7 +685,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 
 .seal {
   position: absolute;
-  left: 50%; top: 58%;
+  left: 50%; top: 50%;
   z-index: 7;
   width: clamp(84px, 15vw, 124px);
   aspect-ratio: 1;
@@ -1024,21 +1024,24 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .wear__head { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
 .wear__head .section__head { margin-bottom: 0; }
 /* the designer's plates for three of the days */
-.looks { list-style: none; margin: 0 0 clamp(2.5rem, 6vw, 4.5rem); padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.2rem, 3vw, 2.5rem); align-items: end; }
-.look figure { margin: 0; display: grid; justify-items: center; gap: .8rem; }
-.look img { display: block; width: 100%; height: auto; max-height: 32rem; object-fit: contain; object-position: bottom; filter: drop-shadow(0 16px 18px rgba(120, 34, 79, .16)); }
-.look figcaption { font-family: var(--caps); font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-text); padding-inline-start: .24em; }
 @media (max-width: 760px) {
-  .looks { display: flex; gap: 1rem; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-  .looks::-webkit-scrollbar { display: none; }
-  .look { flex: 0 0 66vw; scroll-snap-align: center; }
   .look img { max-height: 26rem; }
 }
-.wear__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3.5rem); }
-@media (max-width: 1150px) { .wear__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .wear__grid { grid-template-columns: 1fr; } }
-.wear__item { padding-top: 1.4rem; border-top: 1px solid var(--hair); transition: transform .5s var(--ease); }
-.wear__item:hover { transform: translateY(-3px); }
+/* One row per occasion: the words on the left, the designer's plate on the right */
+.wear__rows { display: grid; max-width: 58rem; }
+.wear__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(6.5rem, 24vw, 11rem);
+  gap: clamp(1.2rem, 4vw, 3.5rem);
+  align-items: center;
+  padding: clamp(1.4rem, 3vw, 2rem) 0;
+  border-top: 1px solid var(--hair);
+}
+.wear__row:last-child { border-bottom: 1px solid var(--hair); }
+.wear__plate { margin: 0; justify-self: end; width: 100%; }
+.wear__plate img { display: block; width: 100%; height: auto; max-height: clamp(11rem, 30vw, 16rem); object-fit: contain; object-position: center bottom; filter: drop-shadow(0 12px 14px rgba(120, 34, 79, .16)); }
+.wear__item { transition: transform .5s var(--ease); }
+.wear__row:hover .wear__item { transform: translateX(3px); }
 .wear__item h3 { font-size: 1.5rem; margin-bottom: .4rem; display: flex; align-items: center; gap: .6rem; }
 .wear__item h3::before { content: ""; width: .45rem; height: .45rem; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 2px var(--rose-soft), 0 0 0 3px var(--champagne-pale); }
 .wear__item p { color: var(--ink-soft); font-size: .98em; max-width: 32ch; }
@@ -1133,21 +1136,6 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .rsvp { --tear-from: var(--ivory); background: linear-gradient(180deg, var(--parchment), var(--ivory) 32%); }
 .field__hint { margin-top: .1rem; font-family: var(--display); font-style: italic; font-size: var(--aside); color: var(--teal-ink); }
 .form__wishes { margin-top: .6rem; padding-top: 1.6rem; border-top: 1px solid var(--hair); }
-/* Both families, above the RSVP */
-.family {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
-  margin-bottom: clamp(3.5rem, 8vw, 6rem);
-}
-.family__text .section__head { margin-bottom: 0; }
-.family__text > p:not(.caps) { color: var(--ink-soft); max-width: 36ch; }
-.photo--family .photo__img { aspect-ratio: 3 / 2; object-position: 50% 42%; }
-@media (max-width: 860px) {
-  .family { grid-template-columns: 1fr; gap: 1.6rem; }
-}
-
 .rsvp__grid {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
