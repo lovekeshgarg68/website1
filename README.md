@@ -8,15 +8,17 @@ css/styles.css      design tokens and styles
 js/config.js        the only file to edit before launch
 js/main.js          invitation opening, navigation, timeline, forms, guestbook
 apps-script/Code.gs Google Sheets backend for RSVP + notes
-media/              monogram mask, favicons, images/us.jpeg (About us) and images/ananta-*.jpg (Venue; the 3 MB original is gitignored), images/wear-*.webp (the designer's three wardrobe plates, transparent backgrounds, 1200px and 600px), reference images
+media/              monogram masks, favicons, share.jpg (WhatsApp/link preview), icons/ (event icons), images/us.jpeg (About us) and images/ananta-*.jpg (Venue; the 3 MB original is gitignored), images/wear-*.webp (the designer's three wardrobe plates, transparent backgrounds, 1200px and 600px), reference images
+tools/share-card.html the 1200x630 card that media/share.jpg is rendered from
 ```
 
 ## The logo on the site
 
 `media/logo_monogram.jpg` is the original. The site uses only the monogram from it (the wreath is not used on the page):
 
-- `monogram-mask.png` — the designer's "AL" monogram (serif letters, swash and butterfly, Oct 2026) as a single-colour mask, cut from `media/logo_monogram.jpg`'s successor; CSS tints it gold for the nav mark, card crest and venue rule, and pale gold on the wax seal. Favicons are generated from it.
-- `favicon.png`, `apple-touch-icon.png` — the monogram on an ivory disc.
+- `monogram-mask.png` + `monogram-heart.png` — the designer's "AL" monogram with the Tiffany heart (29 Oct 2026) as two alpha masks on one 900x795 canvas: the gold layer (letters, swash, dot, the heart's bezel and bail, redrawn in gold in place of the photographed silver mount) and the heart itself. `.mono-mark` and `.seal__mono` paint them as `::before` (gold) and `::after` (heart) so the colours stay in CSS: `--mono-gold` / `--mono-heart`, defaulting to `--gold-deep` and `--tiffany` (#33c5bb, the stone's own body colour). Used in the nav, the card crest, the wax seal, the venue rule and the footer. The deep teals of the site were nudged 6° toward the heart's hue on the same day so the two read as one family.
+- `favicon.png`, `apple-touch-icon.png` — the monogram on a teal disc.
+- `share.jpg` — 1200x630 link preview (WhatsApp, iMessage, social). Regenerate by opening `tools/share-card.html` through the local server at a 1200x630 viewport and screenshotting at 1x, e.g. Chrome headless: `--headless=new --window-size=1200,630 --force-device-scale-factor=1 --virtual-time-budget=6000 --screenshot=share.png http://localhost:8080/tools/share-card.html`, then save as JPEG (quality ~88) and bump `?v=` on the `og:image` tag.
 
 Type: Cormorant Garamond (headings), EB Garamond (text), Marcellus (letterspaced small caps), Pinyon Script (ampersand and two short lines).
 
@@ -29,12 +31,12 @@ The envelope fills the viewport inside a small margin, on a dark teal ground: ha
    2. Extensions → Apps Script. Delete the sample code, paste in `apps-script/Code.gs`, save.
    3. Select the `setup` function in the toolbar and press Run. Approve the permissions. Two tabs appear: **RSVP** and **Notes**.
    4. Deploy → New deployment → type **Web app**. Execute as **Me**. Who has access **Anyone**. Deploy.
-   5. Copy the Web app URL into `js/config.js` → `SCRIPT_URL`.
+   5. Copy the Web app URL into `js/config.js` → `SCRIPT_URL`, and set `RSVP_OPEN: true` in the same file. Until both are set the RSVP section shows "RSVP opens soon" (`html[data-rsvp="soon"]`) and the form stays hidden, so nothing can be submitted into the void. The guestbook strip only appears once there is at least one approved note.
    6. If you later change `Code.gs`, use Deploy → Manage deployments → Edit → New version, so the URL stays the same.
 2. **Notes for the couple:** a note left on the RSVP form is saved with the RSVP and copied to the Notes tab. It only appears on the site once you tick **Approved** there. Clear `SAMPLE_NOTES` in `js/config.js` before going live.
-4. **Fill in when known:** Sehra Bandi venue, transfer arrangements. Search `to follow` in `index.html`.
-5. Optional: add an RSVP deadline line in the RSVP intro.
-6. **Cache busting:** after editing `js/config.js` (or `main.js` / `styles.css`), bump the `?v=` number on its `<script>`/`<link>` tag in `index.html`. Otherwise returning visitors keep the cached demo-mode config and their RSVPs are never saved.
+3. **Fill in when known:** Sehra Bandi venue, transfer arrangements. Search `to follow` in `index.html`.
+4. Optional: add an RSVP deadline line in the RSVP intro.
+5. **Cache busting:** after editing `js/config.js` (or `main.js` / `styles.css`), bump the `?v=` number on its `<script>`/`<link>` tag in `index.html`. Otherwise returning visitors keep the cached demo-mode config and their RSVPs are never saved.
 
 ## Local preview
 

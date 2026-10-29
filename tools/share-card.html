@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!-- WhatsApp / link-preview card. Render at 1200x630 from http://localhost:8080/tools/share-card.html (see README), save as media/share.jpg -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Marcellus&family=Pinyon+Script&display=block" rel="stylesheet">
+<style>
+  html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+  body{background:#f6f1e4;font-family:"Cormorant Garamond",serif;color:#363a4e;position:relative}
+  .bg{position:absolute;inset:0;background:
+      radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.55), transparent 60%),
+      radial-gradient(90% 70% at 50% 110%, rgba(214,183,107,.22), transparent 60%),
+      linear-gradient(180deg,#f7f3e8,#f1e9d5)}
+  .frame{position:absolute;inset:26px;border:1px solid #d6b76b}
+  .frame::after{content:"";position:absolute;inset:6px;border:1px solid rgba(214,183,107,.45)}
+  .card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;text-align:center}
+  .mono{position:relative;width:196px;aspect-ratio:900/795;margin-bottom:26px}
+  .mono i{position:absolute;inset:0;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+  .mono .g{--m:url("../media/monogram-mask.png");background:#9a7a3f}
+  .mono .h{--m:url("../media/monogram-heart.png");background:#33c5bb}
+  .caps{font-family:Marcellus,serif;text-transform:uppercase;letter-spacing:.34em;font-size:15px;color:#7a5f2e;padding-left:.34em}
+  .names{font-weight:300;font-size:86px;line-height:1;margin:12px 0 0;letter-spacing:-.005em}
+  .names .amp{font-family:"Pinyon Script",cursive;color:#9a7a3f;font-size:.72em;margin:0 .12em;position:relative;top:-.04em}
+  .rule{width:64px;height:1px;background:linear-gradient(90deg,transparent,#9a7a3f,transparent);margin:24px 0 22px}
+  .when{font-family:Marcellus,serif;letter-spacing:.24em;font-size:21px;color:#363a4e;padding-left:.24em}
+  .where{font-family:Marcellus,serif;text-transform:uppercase;letter-spacing:.26em;font-size:13.5px;color:#2b6b78;margin-top:12px;padding-left:.26em}
+</style></head><body>
+<div class="bg"></div><div class="frame"></div>
+<div class="card">
+  <div class="mono"><i class="g"></i><i class="h"></i></div>
+  <p class="caps" style="margin:0">The wedding of</p>
+  <h1 class="names">Aakanksha<span class="amp">&amp;</span>Lovekesh</h1>
+  <div class="rule"></div>
+  <p class="when" style="margin:0">27 – 28 January 2027</p>
+  <p class="where" style="margin:0">Ananta Spa &amp; Resort · Ajabgarh, Rajasthan</p>
+</div>
+</body></html>
