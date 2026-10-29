@@ -11,12 +11,12 @@
   --mist: #e4e8e6;
   --ink: #363a4e;
   --ink-soft: #5b6078;
-  --teal: #1f5f6b;
-  --teal-deep: #184c57;
-  --teal-ink: #2b6b78;
+  --teal: #1f676b;
+  --teal-deep: #185257;
+  --teal-ink: #2b7378;
   --teal-pale: #dcf0ec;
-  --tiffany: #7fd1c9;        /* the first gift */
-  --tiffany-deep: #52bdb3;
+  --tiffany: #33c5bb;        /* the first gift: Tiffany blue, the heart on the monogram */
+  --tiffany-deep: #22aaa1;
   --tiffany-pale: #dff1ed;
   --rose-soft: #f3dde3;
   --gold: #c9a24a;
@@ -160,14 +160,23 @@ h1, h2, h3, .day__name { text-wrap: balance; }
   text-decoration: none;
   white-space: nowrap;
 }
+/* The monogram: two tinted layers from one artwork, the gold letters (::before) and the Tiffany heart (::after) */
 .mono-mark {
+  position: relative;
   display: inline-block;
   width: 2.6rem;
-  aspect-ratio: 743 / 586;
-  background: var(--gold-deep);
-  -webkit-mask: url("../media/monogram-mask.png?v=2") center / contain no-repeat;
-  mask: url("../media/monogram-mask.png?v=2") center / contain no-repeat;
+  aspect-ratio: 900 / 795;
+  --mono-gold: var(--gold-deep);
+  --mono-heart: var(--tiffany);
 }
+.mono-mark::before, .mono-mark::after {
+  content: "";
+  position: absolute; inset: 0;
+  -webkit-mask: var(--mono-layer) center / contain no-repeat;
+  mask: var(--mono-layer) center / contain no-repeat;
+}
+.mono-mark::before { --mono-layer: url("../media/monogram-mask.png?v=3"); background: var(--mono-gold); }
+.mono-mark::after { --mono-layer: url("../media/monogram-heart.png?v=3"); background: var(--mono-heart); }
 
 .nav__links { display: flex; gap: clamp(1rem, 2.5vw, 2.2rem); list-style: none; margin: 0; padding: 0; }
 .nav__links a {
@@ -237,7 +246,7 @@ h1, h2, h3, .day__name { text-wrap: balance; }
   text-align: center;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(180deg, #4e7c8c 0%, #7fa6b1 18%, #b4cdd0 34%, #dcd7cc 48%, #efd3b8 60%, #f6dcb6 68%, #cfcfc0 78%, #a3b0aa 90%, #8f9d96 100%);
+  background: linear-gradient(180deg, #4e828c 0%, #7fabb1 18%, #b4d0d0 34%, #dcd7cc 48%, #efd3b8 60%, #f6dcb6 68%, #cfcfc0 78%, #a3b0aa 90%, #8f9d96 100%);
 }
 
 .hero__art {
@@ -481,7 +490,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: radial-gradient(120% 90% at 50% 40%, #1f5a66 0%, #17464f 60%, #113840 100%);   /* the table the envelope lies on */
+  background: radial-gradient(120% 90% at 50% 40%, #1f6166 0%, #174c4f 60%, #113d40 100%);   /* the table the envelope lies on */
   overflow: hidden;
   touch-action: none;
   overscroll-behavior: contain;
@@ -566,7 +575,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
   mask-composite: exclude, exclude, exclude, exclude, add;
 }
 /* Inside: the blue of a small box given a long time ago */
-.env__back { background: var(--paper-fibre), var(--booti-liner) center / 60px 70px repeat, radial-gradient(90% 80% at 50% 30%, #a4e2da 0%, var(--tiffany) 50%, var(--tiffany-deep) 100%); transform: translateZ(0); }
+.env__back { background: var(--paper-fibre), var(--booti-liner) center / 60px 70px repeat, radial-gradient(90% 80% at 50% 30%, #7fdcd3 0%, var(--tiffany) 55%, var(--tiffany-deep) 100%); transform: translateZ(0); }
 .env__back::after { content: ""; position: absolute; inset: 0; background: var(--paper-grain); opacity: .6; }
 /* the envelope's own shadow on the table */
 .env::before { content: ""; position: absolute; inset: 2px 6px -8px; border-radius: var(--env-radius); box-shadow: 0 18px 40px -14px rgba(0, 0, 0, .55), 0 2px 6px rgba(0, 0, 0, .25); z-index: 0; }
@@ -666,7 +675,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
   text-align: center;
 }
 .env__card::before { content: ""; position: absolute; inset: 11px; border: 1px solid rgba(154, 122, 63, .38); border-radius: 6px; pointer-events: none; }
-.env__crest { width: clamp(2.6rem, 9vw, 4rem); margin-bottom: 1rem; background: var(--gold-deep); }
+.env__crest { width: clamp(2.6rem, 9vw, 4rem); margin-bottom: 1rem; }
 .env__names { font-family: var(--script); font-weight: 400; font-size: clamp(2.1rem, 8.6vw, 3.2rem); color: var(--ink); margin: 0 0 .7rem; line-height: 1.15; text-wrap: balance; max-width: 9ch; padding: .1em .2em 0; }
 .env__names .amp { font-family: var(--script); color: var(--gold-deep); font-size: .8em; line-height: 1; }
 .env__rule { width: 2.4rem; height: 1px; background: var(--gold-frame); margin-bottom: .9rem; }
@@ -702,11 +711,18 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .seal__mono {
   position: absolute;
   left: 21%; top: 29%; width: 58%; height: 42%;
-  background: #f7e9bd;
-  -webkit-mask: url("../media/monogram-mask.png?v=2") center / contain no-repeat;
-  mask: url("../media/monogram-mask.png?v=2") center / contain no-repeat;
+  --mono-gold: #f7e9bd;
+  --mono-heart: var(--tiffany);
 }
-.seal__mono--shade { background: rgba(60, 40, 8, .65); transform: translate(-1.5px, -1.5px); }
+.seal__mono::before, .seal__mono::after {
+  content: "";
+  position: absolute; inset: 0;
+  -webkit-mask: var(--mono-layer) center / contain no-repeat;
+  mask: var(--mono-layer) center / contain no-repeat;
+}
+.seal__mono::before { --mono-layer: url("../media/monogram-mask.png?v=3"); background: var(--mono-gold); }
+.seal__mono::after { --mono-layer: url("../media/monogram-heart.png?v=3"); background: var(--mono-heart); }
+.seal__mono--shade { --mono-gold: rgba(60, 40, 8, .65); --mono-heart: rgba(60, 40, 8, .65); transform: translate(-1.5px, -1.5px); }
 .seal:hover { transform: translate(-50%, -50%) scale(1.04); }
 .seal:focus-visible { outline: 2px solid var(--teal); outline-offset: 8px; border-radius: 50%; }
 
@@ -754,7 +770,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 
 /* Soft washes of colour, like the splatter on the wreath */
 .blot { position: absolute; z-index: 0; pointer-events: none; aspect-ratio: 1.1; width: min(34vw, 30rem); opacity: .9; }
-.blot--blue { right: -8vw; top: 6rem; background: radial-gradient(closest-side, #d6e6e8, rgba(214, 230, 232, 0)); }
+.blot--blue { right: -8vw; top: 6rem; background: radial-gradient(closest-side, #d6e8e8, rgba(214, 230, 232, 0)); }
 .blot--coral { left: -10vw; top: -6rem; opacity: .7; background: radial-gradient(closest-side, #f1d3dc, rgba(241, 211, 220, 0)); }
 .blot--plum { right: -12vw; bottom: 4rem; width: min(40vw, 34rem); background: radial-gradient(closest-side, #efd9e1, rgba(239, 217, 225, 0)); }
 
@@ -815,7 +831,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .glance {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(100deg, var(--teal-deep), var(--teal) 60%, #27697a);
+  background: linear-gradient(100deg, var(--teal-deep), var(--teal) 60%, #27717a);
   color: var(--ivory);
   padding-block: clamp(2.8rem, 6vw, 4.6rem);
   text-align: center;
@@ -1067,7 +1083,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .orn-rule { display: flex; align-items: center; gap: 1rem; margin: 1.6rem 0 .2rem; }
 .orn-rule::before, .orn-rule::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--champagne)); }
 .orn-rule::after { background: linear-gradient(90deg, var(--champagne), transparent); }
-.orn-rule .mono-mark { width: 2rem; background: var(--gold-deep); opacity: .8; }
+.orn-rule .mono-mark { width: 2rem; opacity: .8; }
 .venue__map {
   margin-top: 0;
   aspect-ratio: 4 / 3;
@@ -1126,6 +1142,23 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 }
 .rsvp__intro { display: grid; grid-template-rows: auto auto auto 1fr; align-content: start; }
 .rsvp__intro p { color: var(--ink-soft); max-width: 34ch; }
+
+/* Until the sheet is connected (RSVP_OPEN in config.js) the section says so plainly; html[data-rsvp] carries the state */
+html[data-rsvp="soon"] .form, html[data-rsvp="soon"] .rsvp__lead--open, html[data-rsvp="soon"] .wall { display: none; }
+html:not([data-rsvp="soon"]) .rsvp__soon, html:not([data-rsvp="soon"]) .rsvp__lead--soon { display: none; }
+.rsvp__soon {
+  height: 100%;
+  display: grid;
+  gap: .8rem;
+  align-content: center;
+  padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.4rem, 4vw, 2.6rem);
+  border: 1px solid var(--gold-frame);
+  background: rgba(255, 255, 255, .32);
+}
+.rsvp__soon p { margin: 0; color: var(--ink-soft); max-width: 36ch; }
+.rsvp__soon-title { font-family: var(--display); font-weight: 300; font-size: clamp(1.7rem, 3.2vw, 2.2rem); line-height: 1.1; color: var(--ink); }
+.foot__mono { display: block; width: 3.4rem; margin: 0 auto 1.4rem; --mono-gold: var(--gold-pale); }
+.rsvp__soon-when { font-family: var(--caps); text-transform: uppercase; letter-spacing: .22em; font-size: .72rem; color: var(--gold-text); padding-top: .3rem; }
 
 .form { display: grid; gap: 1.6rem; }
 .form__row { display: grid; gap: 1.6rem; grid-template-columns: 1fr 1fr; }
@@ -1279,7 +1312,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 ------------------------------------------------------------------- */
 
 .foot {
-  background: linear-gradient(180deg, var(--teal-deep), #0f3138);
+  background: linear-gradient(180deg, var(--teal-deep), #0f3538);
   color: var(--ivory);
   padding: clamp(5rem, 10vw, 8rem) var(--gutter) 3rem;
   text-align: center;

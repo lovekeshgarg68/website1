@@ -7,6 +7,10 @@ window.WEDDING_CONFIG = {
   // state but nothing is saved anywhere.
   SCRIPT_URL: "",
 
+  // Flip to true once SCRIPT_URL is filled in. Until both are set, the RSVP
+  // section says "opens soon" and the form stays hidden, so no reply is lost.
+  RSVP_OPEN: false,
+
   // Shown in the guestbook wall while SCRIPT_URL is empty, so the section
   // doesn't look bare during review. Remove or empty this array before launch.
   SAMPLE_NOTES: [],

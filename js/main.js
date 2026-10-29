@@ -7,6 +7,9 @@
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
   const html = document.documentElement;
 
+  // RSVP opens only once the sheet is connected AND the switch is on; otherwise the section says "opens soon"
+  if (cfg.RSVP_OPEN && cfg.SCRIPT_URL) html.dataset.rsvp = "open";
+
   /* ---------------------------------------------------------------
      The invitation: seal gives, flap opens, envelope slips away, scene appears
   --------------------------------------------------------------- */
@@ -397,14 +400,8 @@
 
   function renderWall() {
     track.innerHTML = "";
-    if (!notes.length) {
-      const empty = document.createElement("p");
-      empty.className = "wall__empty";
-      empty.textContent = "Be the first to leave a note.";
-      track.replaceWith(empty);
-      empty.id = "wallTrack";
-      return;
-    }
+    if (!notes.length) { wall.hidden = true; return; }
+    wall.hidden = false;
     // ensure track exists (it may have been replaced by the empty state)
     let t = $("#wallTrack");
     if (!t.classList.contains("wall__track")) {
