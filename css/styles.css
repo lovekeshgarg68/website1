@@ -11,9 +11,9 @@
   --mist: #e4e8e6;
   --ink: #363a4e;
   --ink-soft: #5b6078;
-  --teal: #1f676b;
-  --teal-deep: #185257;
-  --teal-ink: #2b7378;
+  --teal: #1f5f6b;
+  --teal-deep: #184c57;
+  --teal-ink: #2b6b78;
   --teal-pale: #dcf0ec;
   --tiffany: #33c5bb;        /* the first gift: Tiffany blue, the heart on the monogram */
   --tiffany-deep: #22aaa1;
@@ -246,7 +246,7 @@ h1, h2, h3, .day__name { text-wrap: balance; }
   text-align: center;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(180deg, #4e828c 0%, #7fabb1 18%, #b4d0d0 34%, #dcd7cc 48%, #efd3b8 60%, #f6dcb6 68%, #cfcfc0 78%, #a3b0aa 90%, #8f9d96 100%);
+  background: linear-gradient(180deg, #4e7c8c 0%, #7fa6b1 18%, #b4cdd0 34%, #dcd7cc 48%, #efd3b8 60%, #f6dcb6 68%, #cfcfc0 78%, #a3b0aa 90%, #8f9d96 100%);
 }
 
 .hero__art {
@@ -490,7 +490,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: radial-gradient(120% 90% at 50% 40%, #1f6166 0%, #174c4f 60%, #113d40 100%);   /* the table the envelope lies on */
+  background: radial-gradient(120% 90% at 50% 40%, #1f5a66 0%, #17464f 60%, #113840 100%);   /* the table the envelope lies on */
   overflow: hidden;
   touch-action: none;
   overscroll-behavior: contain;
@@ -770,7 +770,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 
 /* Soft washes of colour, like the splatter on the wreath */
 .blot { position: absolute; z-index: 0; pointer-events: none; aspect-ratio: 1.1; width: min(34vw, 30rem); opacity: .9; }
-.blot--blue { right: -8vw; top: 6rem; background: radial-gradient(closest-side, #d6e8e8, rgba(214, 230, 232, 0)); }
+.blot--blue { right: -8vw; top: 6rem; background: radial-gradient(closest-side, #d6e6e8, rgba(214, 230, 232, 0)); }
 .blot--coral { left: -10vw; top: -6rem; opacity: .7; background: radial-gradient(closest-side, #f1d3dc, rgba(241, 211, 220, 0)); }
 .blot--plum { right: -12vw; bottom: 4rem; width: min(40vw, 34rem); background: radial-gradient(closest-side, #efd9e1, rgba(239, 217, 225, 0)); }
 
@@ -831,7 +831,7 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .glance {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(100deg, var(--teal-deep), var(--teal) 60%, #27717a);
+  background: linear-gradient(100deg, var(--teal-deep), var(--teal) 60%, #27697a);
   color: var(--ivory);
   padding-block: clamp(2.8rem, 6vw, 4.6rem);
   text-align: center;
@@ -1111,7 +1111,6 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .fact { border-top: 1px solid var(--hair-strong); padding-top: 1.1rem; }
 .fact h3 { font-size: 1.5rem; margin-bottom: .45rem; }
 .fact p { color: var(--ink-soft); max-width: 38ch; }
-.fact .soon { font-family: var(--display); font-style: italic; font-size: var(--aside); line-height: 1.5; color: var(--teal-ink); }
 .spots { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .55rem; }
 .spots li { display: grid; grid-template-columns: minmax(9rem, 11rem) 1fr; gap: 1rem; align-items: baseline; font-size: .98em; }
 .spots b { font-family: var(--display); font-weight: 500; font-size: 1.1rem; color: var(--ink); }
@@ -1134,6 +1133,21 @@ html.has-invite:not(.is-revealed) .hero__art .bulb,
 .rsvp { --tear-from: var(--ivory); background: linear-gradient(180deg, var(--parchment), var(--ivory) 32%); }
 .field__hint { margin-top: .1rem; font-family: var(--display); font-style: italic; font-size: var(--aside); color: var(--teal-ink); }
 .form__wishes { margin-top: .6rem; padding-top: 1.6rem; border-top: 1px solid var(--hair); }
+/* Both families, above the RSVP */
+.family {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  margin-bottom: clamp(3.5rem, 8vw, 6rem);
+}
+.family__text .section__head { margin-bottom: 0; }
+.family__text > p:not(.caps) { color: var(--ink-soft); max-width: 36ch; }
+.photo--family .photo__img { aspect-ratio: 3 / 2; object-position: 50% 42%; }
+@media (max-width: 860px) {
+  .family { grid-template-columns: 1fr; gap: 1.6rem; }
+}
+
 .rsvp__grid {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -1312,7 +1326,7 @@ html:not([data-rsvp="soon"]) .rsvp__soon, html:not([data-rsvp="soon"]) .rsvp__le
 ------------------------------------------------------------------- */
 
 .foot {
-  background: linear-gradient(180deg, var(--teal-deep), #0f3538);
+  background: linear-gradient(180deg, var(--teal-deep), #0f3138);
   color: var(--ivory);
   padding: clamp(5rem, 10vw, 8rem) var(--gutter) 3rem;
   text-align: center;
