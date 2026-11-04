@@ -8,7 +8,7 @@ css/styles.css      design tokens and styles
 js/config.js        the only file to edit before launch
 js/main.js          invitation opening, navigation, timeline, forms, guestbook
 apps-script/Code.gs Google Sheets backend for RSVP + notes
-media/              monogram masks, favicons, share.jpg (WhatsApp/link preview), icons/ (event icons), images/us.jpeg (About us) and images/ananta-*.jpg (Venue; the 3 MB original is gitignored), images/wear-*.webp (the designer's four wardrobe plates, transparent backgrounds, 1200px and 600px, one per occasion row), reference images
+media/              monogram masks, favicons, share.jpg (WhatsApp/link preview), icons/ (event icons), images/us.jpeg (About us) and images/ananta-*.jpg (Venue; the 3 MB original is gitignored), images/wear-*.webp (the designer's five wardrobe plates, transparent backgrounds, 1200px and 600px, one per occasion row), reference images
 tools/share-card.html the 1200x630 card that media/share.jpg is rendered from
 ```
 
