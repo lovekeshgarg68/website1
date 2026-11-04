@@ -138,18 +138,18 @@
   }
 
   /* ---------------------------------------------------------------
-     Counting down to the 27th
+     Counting down to the 26th
   --------------------------------------------------------------- */
   const countdown = $("#countdown");
   const daysToGo = (() => {
-    const target = new Date("2027-01-27T00:00:00+05:30");
+    const target = new Date("2027-01-26T00:00:00+05:30");
     return Math.ceil((target - Date.now()) / 864e5);
   })();
   function countdownText(n) {
     if (n > 1) return `${n} days to go`;
     if (n === 1) return "Tomorrow";
     if (n >= -2) return "It’s happening";
-    return "27–28 January 2027";
+    return "26–28 January 2027";
   }
   if (countdown) countdown.textContent = countdownText(daysToGo);
   function tickCountdown() {
