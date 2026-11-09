@@ -23,11 +23,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Marcellus&family=Pinyon+Script&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="media/monogram-mask.png?v=3" crossorigin="anonymous">
-  <link rel="preload" as="image" href="media/monogram-heart.png?v=3" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/styles.css?v=90">
+  <link rel="preload" as="image" href="media/monogram-mask.png?v=4" crossorigin="anonymous">
+  <link rel="preload" as="image" href="media/monogram-heart.png?v=4" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css?v=91">
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
 
   <!-- ============================================================ -->
   <!-- The invitation: an envelope that opens, then the site         -->
@@ -91,12 +92,19 @@
     </div>
     <button class="invite__skip" id="inviteSkip" type="button">Skip</button>
   </div>
-  <audio id="inviteAudio" src="media/music/sunsetz-intro.mp3" preload="auto" aria-hidden="true"></audio>
+  <audio id="inviteAudio" src="media/music/sunsetz-intro.mp3" preload="none" aria-hidden="true"></audio>
   <script>
     (function () {
       var h = document.documentElement, inv = document.getElementById("invite");
       if (location.hash) { inv.remove(); document.getElementById("inviteAudio").preload = "none"; h.classList.add("is-revealed"); }
-      else { h.classList.add("has-invite"); }
+      else {
+        h.classList.add("has-invite");
+        /* Fetch the music only once the page itself has loaded, so it never competes with fonts and the monogram. */
+        addEventListener("load", function () {
+          var a = document.getElementById("inviteAudio"), idle = window.requestIdleCallback || function (f) { setTimeout(f, 250); };
+          idle(function () { if (a && !h.classList.contains("is-revealed")) { a.preload = "auto"; a.load(); } });
+        });
+      }
     })();
   </script>
 
@@ -326,7 +334,7 @@
         </h1>
         <div class="hero__rule" aria-hidden="true"></div>
         <p class="hero__when">26–28 January 2027</p>
-        <p class="hero__where">Ananta <span class="nowrap">Spa &amp; Resort</span><small>Ajabgarh, Rajasthan</small></p>
+        <p class="hero__where">Ananta <span class="nowrap">Spa &amp; Resort</span> <small>Ajabgarh, Rajasthan</small></p>
       </div>
 
       <a class="hero__scroll" href="#story" aria-label="Scroll down"><span>Scroll</span><i aria-hidden="true"></i></a>
@@ -351,7 +359,7 @@
 
         <div class="story__art reveal">
           <figure class="photo">
-            <img class="photo__img" src="media/images/us.jpeg" width="885" height="1001" alt="Aakanksha and Lovekesh, laughing, in a shower of petals at dusk" loading="lazy" decoding="async">
+            <img class="photo__img" src="media/images/us-885.webp" srcset="media/images/us-480.webp 480w, media/images/us-885.webp 885w" sizes="(max-width: 860px) min(92vw, 24rem), 40vw" width="885" height="1001" alt="Aakanksha and Lovekesh, laughing, in a shower of petals at dusk" loading="lazy" decoding="async">
           </figure>
         </div>
       </div>
@@ -403,7 +411,7 @@
                   <p class="event__time">8:00<small>pm</small></p>
                   <div>
                     <h4 class="event__title">Cocktail Night</h4>
-                    <p class="event__desc">Drinks, dinner, and a dance floor that opens early and closes late. Dress up; this is the one evening to go all out.</p>
+                    <p class="event__desc">Drinks, dinner, and a dance floor that opens early and closes late. Dress up, in black and white; this is the one evening to go western.</p>
                     <p class="event__venue">Nilgiri Hall</p>
                   </div>
                   <span class="event__motif" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M13 12 c3 1.5 7 2.2 11 2.2 s8 -.7 11 -2.2 c-1 9 -5 14 -11 14 s-10 -5 -11 -14z"/><path d="M24 26 v10 M17 37 h14"/><circle cx="20" cy="8" r="1"/><circle cx="27" cy="6" r="1"/><circle cx="31" cy="9.5" r="1"/></svg></span>
@@ -615,7 +623,7 @@
         <div class="venue__intro">
           <div class="section__head reveal">
             <p class="caps caps--orn">The venue</p>
-            <h2 class="venue__name">Ananta <span class="nowrap">Spa &amp; Resort</span><small>Ajabgarh, Rajasthan</small></h2>
+            <h2 class="venue__name">Ananta <span class="nowrap">Spa &amp; Resort</span> <small>Ajabgarh, Rajasthan</small></h2>
           </div>
           <div class="prose">
             <p>Thirty acres of lawns and villas in a valley of the Aravalli foothills, about two hours’ drive from Jaipur, with the ramparts of Ajabgarh Fort on the ridge above and Bhangarh a short drive away. All three days take place within the resort.</p>
